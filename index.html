@@ -578,9 +578,9 @@
                     <p>Complète l'évaluation pour voir tes résultats.</p>
                 </div>
                 <div class="button-group" style="margin-top: 20px;">
-                    <button class="btn btn-secondary" onclick="switchTab('assessment')">Revenir à l'évaluation</button>
-                    <button class="btn btn-secondary" onclick="clearAssessment()">Effacer mes réponses</button>
-                    <button class="btn btn-secondary" onclick="switchTab('library')">Continuer ma découverte</button>
+                    <button class="btn btn-secondary" onclick="switchTab('library')">
+                        Continuer ma découverte
+                    </button>
                 </div>
             </div>
             
@@ -1146,7 +1146,6 @@
                     </div>
                     <div class="button-group">
                         <button class="btn btn-primary" onclick="generatePDFAnalysisLight()">📋 Comprendre ce que je reproduis encore</button>
-                        <button class="btn btn-secondary" onclick="resetAssessment()">Effacer mes réponses</button>
                     </div>`;
 
             document.getElementById('resultsContainer').innerHTML = html;
