@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RED FLAG Famille</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -281,6 +282,111 @@
             transform: translateY(-1px);
         }
         
+        /* Styles pour système freemium */
+        .free-tag {
+            display: inline-block;
+            background: #639922;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+        
+        /* Modal Premium */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .modal-content h3 {
+            color: #8b7355;
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+        
+        .modal-content p {
+            color: #5f5e5a;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        .modal-checklist {
+            text-align: left;
+            background: #fffaf2;
+            border: 1px solid #e0dcd3;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #5f5e5a;
+        }
+        
+        .modal-checklist li {
+            margin: 8px 0;
+        }
+        
+        .modal-cta {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .modal-cta a, .modal-cta button {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .modal-unlock {
+            background: #ba7517;
+            color: white;
+        }
+        
+        .modal-unlock:hover {
+            background: #993c1d;
+        }
+        
+        .modal-close {
+            background: #e0dcd3;
+            color: #2c2c2a;
+        }
+        
+        .modal-close:hover {
+            background: #d3d1c7;
+        }
+        
         .library-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -440,18 +546,23 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚩 Red Flag Famille</h1>
-            <p>Détecte les dynamiques toxiques cachées : manipulation parentale, parentification, favoritisme, culpabilité familiale.</p>
+            <h1>🚩 RED FLAG Famille</h1>
+            <p style="font-size: 16px; font-weight: 600; margin: 16px 0;">Tu culpabilises pour tout ?<br>Tu te justifies alors que tu n'as rien fait ?<br>Tu portes des problèmes qui ne sont pas les tiens ?</p>
+            <p style="font-size: 14px; opacity: 0.9; margin-top: 12px;">Découvre le rôle que ta famille t'a fait jouer.</p>
+            <p style="font-size: 12px; opacity: 0.85; margin-top: 12px;"><strong>🆓 Test gratuit</strong> — Les résultats sont pour toi. Accès à la bibliothèque complète : 14,90 €/mois, sans engagement.</p>
         </div>
         
         <div class="content">
             <div class="tabs">
-                <button class="tab-button active" onclick="switchTab('assessment')">Évaluation</button>
-                <button class="tab-button" onclick="switchTab('results')">Résultats</button>
-                <button class="tab-button" onclick="switchTab('library')">Bibliothèque</button>
+                <button class="tab-button active" onclick="switchTab('assessment')">✓ Test</button>
+                <button class="tab-button" onclick="switchTab('results')">✓ Ton profil</button>
+                <button class="tab-button" onclick="switchTab('library')">✓ Bibliothèque complète</button>
             </div>
             
             <div id="assessment" class="tab-content active">
+                <div style="background: #EAF3DE; border: 1px solid #639922; border-radius: 8px; padding: 12px; margin-bottom: 20px; font-size: 13px; color: #3b6d11;">
+                    <strong>✓ Gratuit</strong> — Réponds à toutes les questions pour découvrir ton profil et tes résultats détaillés, complètement gratuitement.
+                </div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
@@ -469,7 +580,7 @@
                 <div class="button-group" style="margin-top: 20px;">
                     <button class="btn btn-secondary" onclick="switchTab('assessment')">Revenir à l'évaluation</button>
                     <button class="btn btn-secondary" onclick="clearAssessment()">Effacer mes réponses</button>
-                    <button class="btn btn-secondary" onclick="switchTab('library')">Explorer la Bibliothèque</button>
+                    <button class="btn btn-secondary" onclick="switchTab('library')">Continuer ma découverte</button>
                 </div>
             </div>
             
@@ -480,7 +591,42 @@
         </div>
     </div>
     
+    <!-- Modal Premium -->
+    <div id="premiumModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Tu viens peut-être de mettre des mots sur quelque chose que tu portes depuis des années</h3>
+            <p>Cette partie de toi que tu viens de reconnaître ? Elle a une histoire. Et comprendre cette histoire peut tout changer.</p>
+            
+            <div class="modal-checklist">
+                <strong>Accès immédiat :</strong>
+                <ul>
+                    <li>✓ Comprendre pourquoi tu te sens responsable de tout</li>
+                    <li>✓ Arrêter de croire que tout est de ta faute</li>
+                    <li>✓ Découvrir les rôles qu'on t'a donnés sans te demander ton avis</li>
+                    <li>✓ Comprendre pourquoi tu reproduis toujours les mêmes schémas<br><span style="font-size: 12px; color: #8b7355; font-style: italic;">Parce qu'on ne répète pas ce qu'on comprend. On répète surtout ce qu'on n'a jamais vu.</span></li>
+                    <li>✓ Accéder à plus de 30 articles pour comprendre ce que tu reproduis encore aujourd'hui</li>
+                </ul>
+            </div>
+            
+            <div style="background: #fffaf2; border: 1px solid #e0dcd3; border-radius: 8px; padding: 12px; margin: 16px 0; font-size: 12px; color: #5f5e5a; line-height: 1.6;">
+                <strong style="color: #8b7355;">📚 30+ articles disponibles</strong><br>
+                Bibliothèque enrichie régulièrement<br>
+                Accès illimité
+            </div>
+            
+            <p><strong>14,90 € / mois</strong><br><span style="font-size: 12px; color: #888780;">Sans engagement</span><br><span style="font-size: 11px; color: #8b7355;">Annule quand tu veux. Accès immédiat.</span></p>
+            
+            <p style="font-size: 13px; color: #8b7355; line-height: 1.7; margin: 16px 0;">Tu peux continuer à faire comme avant. Ou enfin comprendre pourquoi certaines choses reviennent toujours dans ta vie.</p>
+            
+            <div class="modal-cta">
+                <a href="https://payhip.com/b/9zOuQ" target="_blank" class="modal-unlock">Débloquer la bibliothèque</a>
+                <button class="modal-close" onclick="closePremiumModal()">Fermer</button>
+            </div>
+        </div>
+    </div>
+    
     <script>
+        
         const questions = [
             {category: 'Manipulation parentale', id: 'manipulation', questions: [{text: "Un parent utilise mes secrets ou vulnérabilités contre moi lors de conflits", weight: 3}, {text: "Un parent me dit que je suis 'la seule qui comprenne' ou 'la seule en qui il peut compter'", weight: 3}, {text: "Un parent me reproche de ressembler à l'autre parent ou utilise mes proches pour me contrôler", weight: 2}, {text: "Je me sens obligée de répondre très rapidement à ses appels, visites ou messages, sinon il s'énerve", weight: 2}, {text: "Un parent dit que je suis 'égoïste' ou 'ingrate' quand je mets des limites", weight: 2}]},
             {category: 'Parentification et rôle inversé', id: 'parentification', questions: [{text: "J'ai été l'oreille émotionnelle d'un parent quand j'étais enfant ou adolescente", weight: 3}, {text: "J'ai appris à nier mes besoins pour calmer un parent ou le protéger", weight: 3}, {text: "Un parent me confie ses peines amoureuses ou professionnelles comme à une amie", weight: 2}, {text: "Je me sens responsable des émotions d'un parent encore aujourd'hui", weight: 2}, {text: "Je n'ose pas dire non à un parent sans me sentir immédiatement coupable", weight: 2}]},
@@ -548,7 +694,15 @@
         let currentArchetype = null;
         
         const articleContents = {
-            'enfant_parent_0': `Tu ne culpabilises pas parce que tu es gentille. Tu ne culpabilises pas parce que tu as bon cœur. Tu culpabilises parce qu'on t'a appris très tôt que penser à toi était un problème.
+            'enfant_parent_0': `Tu étais l'oreille de ta mère quand elle s'effondrait à minuit. Tu étais le truc solide sur lequel ton père posait ses soucis. Tu as appris très tôt que penser à toi était luxe. Et même maintenant, quand tu dis non à quelqu'un, tu sens le poids du reproche avant même qu'il arrive.
+
+Aujourd'hui tu reçois un message. Quelqu'un a besoin. Immédiatement tu sens ton énergie partir. Pas parce que tu es gentille. Parce que quelque chose dans ton cerveau s'est câblé comme ça : les autres d'abord. Toi, tu viens après, toujours. Tu es dans ta voiture, tu repenses au coup de fil de ta mère hier. Elle n'a rien demandé explicitement mais tu as senti l'attente. Et tu as déjà commencé à reprogrammer ton week-end pour t'adapter. Personne ne t'y force. C'est pire que ça. C'est automatique.
+
+Le truc c'est que tu attires exactement ce qu'on t'a appris à donner. Des gens qui prennent beaucoup. Des gens qui ont oublié qu'il faut aussi compter jusqu'à dix avant de demander. Tu donnes tellement que c'est devenu invisible. Ce qui est offert tous les jours, on l'oublie. Mais quand tu dis non une fois, une seule, c'est ça qu'on se souvient. C'est ça qui compte.
+
+Recevoir de l'aide te met mal à l'aise. Tu dis que tu te débrouilles. Et c'est vrai. Tu te débrouilles toujours. Mais c'est comme conduire avec un pied sur le frein depuis trente ans. À un moment, ça détruit la mécanique. Tu restes dans des relations qui te vident parce qu'une partie de toi croit que l'amour c'est du travail. Qu'il faut faire ses preuves. Que la vulnérabilité c'est la mort.
+
+Tu n'as jamais rien eu à rembourser. Mais tu passes ta vie à le faire quand même.
 
 Peut-être que tu étais celle qui écoutait. Celle qui calmait. Celle qui comprenait. Celle qui ne faisait pas de vagues. Celle qui entendait les problèmes des adultes alors qu'elle n'avait même pas l'âge de les porter.
 
@@ -592,749 +746,43 @@ Tu peux continuer à aimer sans porter tout le monde. Tu peux dire non sans êtr
 
 Et surtout, tu peux découvrir quelque chose que beaucoup d'enfants parents mettent des années à comprendre :
 
-Tu n'es pas née pour réparer tout le monde.
+Tu n'es pas née pour réparer tout le monde.`,
+            'bouc_emissaire_0': `Tous les conflits de ta famille t'ont trouvée comme cible. Tu étais trop quelque chose. Trop sensible. Trop bruyante. Trop exigeante. Trop d'opinions. Quand l'atmosphère s'électrisait, tu recevais. Quand quelqu'un était de mauvaise humeur, tu payais. Tu portais la honte d'une dynamique qu'on t'avait pas choisie.
 
-Tu avais le droit d'être une enfant. Et aujourd'hui encore, tu as le droit d'être simplement une femme qui n'a pas besoin de mériter sa place, son repos ou son bonheur.
+Et tu l'as intériorisé. Tu es le problème. Tu fais tout mal. Tu dois t'excuser. Pendant des années tu as cru que changer suffirait. Que si tu étais moins bruyante, moins visible, moins toi, ça s'arrangerait. Ça n'a rien changé. Parce que ce rôle n'avait rien à voir avec qui tu étais. C'était juste la place qu'on t'avait assignée.
 
-Tu n'as rien à rembourser. Tu n'as pas de dette invisible. Tu n'as pas à gagner le droit d'exister.
+Maintenant tu te défends constamment. Même quand personne n'attaque. Même quand on te propose juste un café, tu es déjà en train de justifier pourquoi tu en aurais besoin. Tu dis oui à des accusations qui n'ont rien à voir avec toi parce que le réflexe c'est encore : c'est ma faute. Tu restes avec des gens qui continuent à te traiter comme bouc émissaire parce que c'est ce que tu as appris à accepter.
 
-Tu peux commencer à vivre sans porter le monde sur ton dos. Même si, au début, ça te paraît étrange. Même si une partie de toi culpabilise encore.
+C'est pas de l'humilité. C'est une habitude qu'on t'a enfoncée. Et c'est possible de la casser. Mais d'abord il faut que tu acceptes que tu n'es pas le problème. Que tu ne l'as jamais été.`,
 
-Parce que cette culpabilité n'est pas ton identité. C'est juste une vieille habitude. Et une habitude, ça peut se désapprendre.`,
-            'bouc_emissaire_0': `Tu connais peut-être cette sensation étrange.
+            'enfant_invisible_0': `Tu as appris à ne pas déranger et progressivement tu as disparu. Pas d'un coup. Lentement. En te faisant plus petite. En parlant moins fort. En n'exprimant tes opinions que si quelqu'un te les demandait explicitement. Et même là, tu préfères écouter.
 
-Personne ne t'a encore reproché quoi que ce soit, mais tu es déjà en train d'expliquer.
+C'est devenu ton superpouvoir et ta prison. Tu arrives à un repas de famille et tu observes. Tu vois les dynamiques. Tu comprends qui va exploser, qui va pleurer, qui va sortir de ses gonds. Et tu ne dis rien. Tu te fais toute petite pour que personne ne te remarque. Pour que personne n'ait à gérer toi en plus de ses propres trucs.
 
-Tu détailles.
+Au travail tu fais un boulot impeccablement mais on ne te voit pas vraiment. Tu lèves ta main pour proposer quelque chose et ta voix devient plus douce, comme pour demander permission. Tu remplaces les "je" par des "on" ou des "peut-être qu'on pourrait". Tu priorises les besoins de tout le monde avant les tiens automatiquement. C'est un schéma si profond maintenant que tu le confonds avec ta personnalité.
 
-Tu argumentes.
+Mais l'invisibilité ne te protège plus. Elle juste te maintient dehors. Dehors des conversations. Dehors des décisions. Dehors de ta propre vie. Tu attends que quelqu'un vienne te chercher. Que quelqu'un dise enfin "et toi, qu'est-ce que tu veux?" Mais personne ne va le faire parce que tu as passé des années à signaler que tu n'avais pas de besoins.
 
-Tu précises.
+L'émergence c'est risqué. C'est bruyant. C'est déranger. Et c'est ce qu'il faut faire quand même.`,
+            'enfant_oublie_0': `Personne ne viendra. Tu l'as compris très jeune et tu as arrêté d'attendre. Quand tu avais faim, tu te cherchais à manger. Quand tu pleurais, tu t'essuyais toi-même. Quand tu avais peur, tu respirais. Parce que personne n'était disponible pour le faire à ta place.
 
-Tu cherches les bons mots.
+Tu as développé une indépendance qui ressemble à de la force. Les gens l'admirent. "T'es trop forte, toi." Mais ce n'est pas de la force. C'est de la survie. Tu as appris à te débrouiller parce qu'il n'y avait personne. Et maintenant tu ne peux pas accepter l'aide parce que tu sais pas comment.
 
-Tu as peur qu'on te comprenne mal.
+Compter sur quelqu'un te paraît impossible. Un ami propose de venir t'aider et déjà tu inventes une excuse. On te demande comment ça va et tu dis que ça va parce que dire le contraire c'est admettre que tu as besoin. Et demander besoin c'est risquer l'abandon une deuxième fois. Tu fais tout toute seule. Tu gères tout toute seule. Tu encaisses tout toute seule. Et la solitude c'est juste le prix que tu paies pour ne pas être abandonnée.
 
-Tu as peur qu'on pense que tu es méchante.
+Le truc c'est que tu transmets ça. À tes enfants. Directement ou indirectement. Tu montres que on n'a besoin de personne. Que c'est faible de demander. Que l'amour c'est pas un filet de sécurité, c'est zéro. Et tu les mets dans le même bateau que toi. Seul face à la tempête.
 
-Tu as peur qu'on te fasse passer pour ce que tu n'es pas.
+Tu aurais juste eu besoin que quelqu'un vienne. Une fois. N'importe quand.`,
 
-Alors tu anticipes.
+            'enfant_sauveur_0': `Ton cerveau tourne à cent mille tours. Maintenant. Et maintenant. Et maintenant. Quelqu'un va mal quelque part et immédiatement c'est toi qui dois réparer. Pas parce qu'on te le demande explicitement. Parce que tu sens la fissure avant que personne la voit.
 
-Tu te défends avant même d'être attaquée.
+Enfant tu as appris que ta valeur venait de ce que tu résolvais. Une mère déprimée, tu la soignais. Un parent blessé, tu l'écoutais avec une patience qui n'avait rien d'enfantin. Tu as développé un sixième sens pour la souffrance des autres. Mais tu ne sais pas comment sentir tes propres limites parce que personne ne t'a appris.
 
-Et parfois, tu t'excuses alors que tu n'as rien fait.
+Maintenant c'est pareil mais en plus rapide. Un ami envoie un message qui traîne une certaine douleur, tu relis trois fois, tu construis déjà ta réponse avant même qu'il ait fini. Quelqu'un à côté de toi semble off et tu commences à réfléchir à ce que tu pourrais faire pour arranger. Pendant ce temps tu oublies de manger. Tu dis oui à un truc que tu ne veux pas faire parce que refuser te rend coupable. Et quand quelqu'un ne suit pas ton conseil, tu le prends comme un échec personnel. Comme si tu aurais dû trouver les bonnes paroles magiques.
 
-Tu dis :
+Le prix c'est que tu vis en permanence tendue. En alerte. En guettant qui a besoin. Et ça te tue doucement. Parce que personne n'a jamais pris soin de toi de la même façon. Personne n'a jamais attendu que tu dises oui avant de t'aider. Et maintenant tu ne sais pas comment le faire.
 
-« Désolée de te déranger. »
-
-« Désolée, je voulais juste dire que... »
-
-« Désolée, mais je pense que... »
-
-Comme si avoir une opinion était déjà une faute.
-
-Comme si exister demandait une autorisation.
-
-Tu sais ce qu'il y a de fou ?
-
-Les autres ne se justifient pas autant.
-
-Ils disent.
-
-Ils décident.
-
-Ils refusent.
-
-Ils changent d'avis.
-
-Ils se trompent.
-
-Et ils continuent à vivre.
-
-Toi, non.
-
-Toi, tu repasses la conversation dans ta tête.
-
-Tu te demandes si tu as été trop directe.
-
-Trop froide.
-
-Trop sensible.
-
-Trop exigeante.
-
-Pas assez gentille.
-
-Tu analyses tout.
-
-Parce qu'une partie de toi a appris très tôt que le problème, c'était souvent toi.
-
-Peut-être qu'on t'a reproché des choses qui ne t'appartenaient pas.
-
-Peut-être qu'il fallait bien que quelqu'un soit responsable des tensions dans la maison.
-
-Alors, sans le savoir, tu as pris cette place.
-
-La place de celle qui dérange.
-
-La place de celle qui est compliquée.
-
-La place de celle qui fait toujours quelque chose de travers.
-
-Et quand tu entends ça pendant des années, tu finis par te surveiller toi-même.
-
-Tu deviens ton propre juge.
-
-Tu vérifies tout.
-
-Tes mots.
-
-Ton comportement.
-
-Tes réactions.
-
-Tu cherches à ne pas déplaire.
-
-Parce qu'au fond, tu as peur d'être rejetée.
-
-Alors tu fais des efforts énormes pour être comprise.
-
-Mais tu sais ce qui est épuisant ?
-
-Les gens qui t'aiment vraiment n'ont pas besoin de cinquante explications.
-
-Ils n'ont pas besoin que tu fasses un dossier complet pour expliquer pourquoi tu es fatiguée.
-
-Pourquoi tu refuses.
-
-Pourquoi tu as changé d'avis.
-
-Ils respectent simplement ce que tu dis.
-
-Mais comme tu n'as pas toujours connu ça, tu continues à croire que tu dois convaincre.
-
-Alors tu rencontres parfois des personnes qui adorent ça.
-
-Des gens qui remettent tout en question.
-
-Des gens qui te font douter.
-
-Des gens qui retournent les situations.
-
-Des gens qui te poussent à te défendre encore et encore.
-
-Et comme c'est familier, tu restes plus longtemps que les autres.
-
-Parce qu'une partie de toi connaît déjà ce terrain.
-
-Tu l'as appris très tôt.
-
-Mais être habituée à quelque chose ne veut pas dire que c'est normal.
-
-Ce n'est pas normal de devoir prouver sans arrêt que tu es quelqu'un de bien.
-
-Ce n'est pas normal de te sentir coupable d'avoir une limite.
-
-Ce n'est pas normal d'avoir peur de décevoir tout le monde.
-
-Et surtout, ce n'est pas normal de croire que tu dois mériter le droit d'être entendue.
-
-Tu n'as pas besoin d'un avocat pour expliquer ton existence.
-
-Tu n'as pas besoin d'un témoin pour justifier tes émotions.
-
-Tu n'as pas besoin d'un jury pour valider ce que tu ressens.
-
-Tu peux dire non.
-
-Tu peux changer d'avis.
-
-Tu peux te tromper.
-
-Tu peux partir.
-
-Tu peux ne pas être d'accord.
-
-Tu peux être fatiguée.
-
-Tu peux ne pas avoir envie.
-
-Et tu peux même ne pas te justifier.
-
-Parce qu'au fond, le vrai problème n'est pas que tu expliques trop.
-
-Le vrai problème, c'est qu'on t'a appris à douter de ta propre légitimité.
-
-Mais cette histoire-là n'est pas une condamnation.
-
-Tu n'es pas la personne qu'on a désignée.
-
-Tu n'es pas celle qu'on a accusée.
-
-Tu n'es pas le problème.
-
-Tu es peut-être simplement quelqu'un qui a vécu trop longtemps avec l'impression qu'il fallait se défendre pour avoir le droit d'exister.
-
-Et ça, ça peut changer.
-
-Petit à petit.
-
-Parce qu'un jour, tu découvriras quelque chose de presque étrange.
-
-Les personnes saines ne te demandent pas de plaider ta cause.
-
-Elles t'écoutent.
-
-Et ça change tout.`,
-            'enfant_invisible_0': `Tu as peut-être pris cette habitude tellement tôt que tu ne la vois même plus.
-
-Quand quelqu'un te demande ce que tu veux manger, tu réponds :
-
-« Comme tu veux. »
-
-Quand on te demande où tu veux aller, tu dis :
-
-« Ça m'est égal. »
-
-Quand quelque chose te blesse, tu réponds :
-
-« Ce n'est pas grave. »
-
-Quand tu es fatiguée, tu continues.
-
-Quand tu as besoin d'aide, tu attends.
-
-Et quand tu craques enfin, tu as presque honte.
-
-Parce qu'au fond, tu as appris une chose très jeune.
-
-Ne dérange pas.
-
-Ne demande pas trop.
-
-Ne prends pas trop de place.
-
-Ne sois pas compliquée.
-
-Alors tu t'es adaptée.
-
-Tu es devenue autonome.
-
-Pas l'autonomie joyeuse, celle qu'on choisit.
-
-L'autonomie de survie.
-
-Celle qui dit :
-
-« Je vais me débrouiller seule. »
-
-Parce qu'attendre quelque chose des autres, c'était risquer d'être déçue.
-
-Peut-être qu'on ne t'écoutait pas beaucoup.
-
-Peut-être qu'il y avait plus urgent que toi.
-
-Plus bruyant que toi.
-
-Plus fragile que toi.
-
-Plus compliqué que toi.
-
-Alors tu as compris que tes besoins pouvaient attendre.
-
-Encore un peu.
-
-Toujours un peu.
-
-Et tu es devenue cette femme qui sait tout faire.
-
-Tu n'embêtes personne.
-
-Tu t'arranges.
-
-Tu encaisses.
-
-Tu trouves des solutions.
-
-Tu fais avec.
-
-Et les autres te trouvent forte.
-
-Mais ce qu'ils appellent de la force est parfois une immense solitude.
-
-Parce qu'au fond, tu t'es habituée à ne compter que sur toi.
-
-Tu as du mal à demander.
-
-Tu as du mal à recevoir.
-
-Tu as du mal à dire :
-
-« J'ai besoin de toi. »
-
-Tu préfères dire :
-
-« T'inquiète, ça va. »
-
-Même quand ça ne va pas.
-
-Tu sais ce qui est étrange ?
-
-Tu comprends très bien les besoins des autres.
-
-Tu repères tout.
-
-Tu vois quand quelqu'un est triste.
-
-Tu sais écouter.
-
-Tu sais rassurer.
-
-Mais quand il s'agit de toi, tu deviens floue.
-
-Tu repousses.
-
-Tu attends.
-
-Tu minimises.
-
-Tu te dis que ça peut attendre.
-
-Tu as peut-être déjà vécu ça.
-
-Tu es malade, mais tu continues.
-
-Tu es épuisée, mais tu continues.
-
-Tu es blessée, mais tu continues.
-
-Et quand quelqu'un t'aide enfin, tu réponds :
-
-« Fallait pas. »
-
-Comme si recevoir était une dette.
-
-Comme si être aidée était un privilège que tu ne mérites pas vraiment.
-
-Alors tu donnes beaucoup.
-
-Parce que donner te semble naturel.
-
-Mais recevoir, ça te met mal à l'aise.
-
-Tu as peur d'être un poids.
-
-Tu as peur d'être envahissante.
-
-Tu as peur qu'on pense que tu exagères.
-
-Alors tu te tais.
-
-Et parfois, les autres finissent vraiment par t'oublier.
-
-Pas parce qu'ils ne t'aiment pas.
-
-Mais parce que tu leur as montré pendant des années que tu n'avais besoin de rien.
-
-Tu es devenue la femme qui gère.
-
-La femme solide.
-
-La femme discrète.
-
-La femme qui ne demande jamais rien.
-
-Et un jour, tu te surprends à ressentir quelque chose de douloureux.
-
-Tu as l'impression que personne ne pense à toi.
-
-Que personne ne te comprend.
-
-Que personne ne voit tes efforts.
-
-Et cette douleur est réelle.
-
-Mais il y a une chose difficile à entendre.
-
-Les autres ne peuvent pas toujours deviner ce que tu ne montres jamais.
-
-Ils ne savent pas que tu es fatiguée.
-
-Ils ne savent pas que tu as besoin d'être soutenue.
-
-Ils ne savent pas que tu attends un geste.
-
-Parce que tu as passé une vie entière à cacher tes besoins.
-
-Tu sais ce qui est triste ?
-
-Tu t'es tellement habituée à vivre avec peu que tu finis parfois par croire que c'est normal.
-
-Tu t'adaptes aux miettes.
-
-Tu te contentes du minimum.
-
-Tu excuses beaucoup.
-
-Tu supportes beaucoup.
-
-Tu attends longtemps.
-
-Parce qu'une partie de toi continue à croire qu'il ne faut pas demander plus.
-
-Mais tu n'es plus cette petite fille qui attendait qu'on la remarque.
-
-Tu as le droit de dire que tu es fatiguée.
-
-Tu as le droit d'avoir besoin d'aide.
-
-Tu as le droit d'avoir des envies.
-
-Tu as le droit de déranger.
-
-Tu as le droit d'être déçue.
-
-Tu as le droit de demander.
-
-Tu as le droit d'avoir des attentes.
-
-Tu as le droit de prendre de la place.
-
-Et surtout, tu as le droit d'exister autrement qu'en étant celle qui se débrouille toute seule.
-
-Parce qu'au fond, tu ne voulais pas être indépendante à ce point.
-
-Tu voulais simplement être rassurée.
-
-Tu voulais qu'on pense à toi.
-
-Tu voulais qu'on te voie.
-
-Et crois-moi, avoir besoin d'amour, d'attention ou de soutien ne fait pas de toi quelqu'un de faible.
-
-Ça fait juste de toi un être humain.
-
-Et il n'y a rien de honteux là-dedans.`,
-            'enfant_oublie_0': `Tu l'entends souvent.
-
-« Toi, tu es forte. »
-
-« Toi, tu t'en sors toujours. »
-
-« Toi, tu n'as besoin de personne. »
-
-Et parfois, les gens disent ça comme un compliment.
-
-Mais ils ne savent pas que cette force-là, tu ne l'as pas choisie.
-
-Tu l'as apprise.
-
-Parce qu'à un moment de ta vie, tu as compris qu'il ne fallait pas trop attendre.
-
-Peut-être qu'on était occupé.
-
-Peut-être qu'il y avait plus fragile que toi.
-
-Plus malade.
-
-Plus bruyant.
-
-Plus compliqué.
-
-Alors tu as appris à faire seule.
-
-Seule pour tes émotions.
-
-Seule pour tes peurs.
-
-Seule pour tes problèmes.
-
-Tu as appris à ne pas déranger.
-
-À ne pas demander.
-
-À trouver des solutions.
-
-À attendre que ça passe.
-
-Et avec le temps, cette manière de survivre est devenue ta personnalité.
-
-Tu es devenue autonome.
-
-Indépendante.
-
-Débrouillarde.
-
-Mais derrière cette autonomie, il y a parfois une immense fatigue.
-
-Parce qu'au fond, tu ne voulais pas tout faire seule.
-
-Tu voulais juste être rassurée.
-
-Tu voulais qu'on pense à toi.
-
-Tu voulais qu'on te remarque sans que tu sois obligée de crier.
-
-Alors tu as arrêté de demander.
-
-Tu t'es habituée.
-
-Tu t'es dit :
-
-« Je vais me débrouiller. »
-
-« Ce n'est pas grave. »
-
-« Ça peut attendre. »
-
-Et tu as continué.
-
-Tu sais ce qui est étrange ?
-
-Tu es capable d'aider tout le monde.
-
-Tu réponds présente.
-
-Tu trouves des solutions.
-
-Tu rassures.
-
-Tu écoutes.
-
-Mais quand quelqu'un te demande :
-
-« Qu'est-ce que je peux faire pour toi ? »
-
-Tu ne sais plus quoi répondre.
-
-Parce que recevoir te met mal à l'aise.
-
-Tu réponds :
-
-« Rien, ça va. »
-
-« T'inquiète. »
-
-« Je vais gérer. »
-
-Même quand tu es épuisée.
-
-Même quand tu aurais besoin qu'on te prenne dans les bras.
-
-Même quand tu aurais envie que quelqu'un prenne le relais.
-
-Mais une petite voix te dit :
-
-« Ne dérange pas. »
-
-« Débrouille-toi. »
-
-« Les autres ont déjà assez de problèmes. »
-
-Alors tu continues.
-
-Et les gens finissent par croire que tu n'as besoin de rien.
-
-Parce que c'est ce que tu leur montres.
-
-Tu sais combien de femmes vivent avec cette phrase dans la tête ?
-
-« Je n'ai besoin de personne. »
-
-Et elles en sont presque fières.
-
-Alors qu'en réalité, cette phrase est parfois une cicatrice.
-
-Parce que les êtres humains ne sont pas faits pour tout traverser seuls.
-
-Tu as peut-être connu cette scène.
-
-Tu es malade.
-
-Tu es triste.
-
-Tu as peur.
-
-Mais tu ne le dis à personne.
-
-Tu attends.
-
-Tu gères.
-
-Tu souris.
-
-Et quand ça devient trop lourd, tu craques en silence.
-
-Parce que tu as honte d'avoir besoin.
-
-Tu as honte d'être fatiguée.
-
-Tu as honte de demander.
-
-Tu sais ce qui est triste ?
-
-Tu as parfois l'impression que personne ne pense à toi.
-
-Que personne ne t'aide.
-
-Que personne ne te comprend.
-
-Mais comment les autres pourraient-ils savoir ce que tu caches depuis des années ?
-
-Tu as tellement appris à disparaître derrière ton efficacité que les gens finissent par croire que tu n'as besoin de rien.
-
-Et pourtant, au fond de toi, il y a peut-être encore cette petite fille qui attendait qu'on vienne vers elle.
-
-Sans qu'elle soit obligée de réclamer.
-
-Sans qu'elle soit obligée d'expliquer.
-
-Sans qu'elle soit obligée d'être parfaite.
-
-Juste parce qu'elle existait.
-
-Tu sais quoi ?
-
-Tu n'as pas été mise sur cette terre pour survivre seule.
-
-Tu n'es pas obligée d'être forte tout le temps.
-
-Tu n'es pas obligée d'avoir réponse à tout.
-
-Tu n'es pas obligée d'être celle qui gère toujours.
-
-Tu peux être fatiguée.
-
-Tu peux être perdue.
-
-Tu peux demander.
-
-Tu peux recevoir.
-
-Tu peux t'appuyer sur quelqu'un.
-
-Et ça ne fait pas de toi quelqu'un de faible.
-
-Ça fait juste de toi quelqu'un de vivant.
-
-Parce qu'au fond, ce n'est pas l'indépendance que tu cherchais.
-
-C'était la sécurité.
-
-Tu voulais juste être certaine qu'il y aurait quelqu'un.
-
-Quelqu'un qui pense à toi.
-
-Quelqu'un qui reste.
-
-Quelqu'un qui te voit.
-
-Et la vérité, c'est que tu mérites ça.
-
-Tu n'as pas besoin de prouver que tu souffres assez.
-
-Tu n'as pas besoin d'attendre d'être au bord de l'épuisement pour demander.
-
-Tu n'as pas besoin de continuer à faire semblant.
-
-Tu peux arrêter de tout porter seule.
-
-Parce que tu n'as jamais été faite pour traverser toute ta vie comme une île.
-
-Tu es un être humain.
-
-Et les êtres humains ont besoin des autres.
-
-Il n'y a aucune honte là-dedans.
-
-Aucune.`,
-            'enfant_sauveur_0': `Tu remarques des choses que les autres ne voient même pas.
-
-Le ton d'une voix.
-
-Un regard.
-
-Un silence.
-
-Une phrase qui change.
-
-Une porte qui claque un peu plus fort.
-
-Une tension dans une pièce.
-
-Et avant même que les autres comprennent qu'il se passe quelque chose, toi, tu l'as déjà senti.
-
-Tu n'appelles pas ça de l'hypervigilance.
-
-Tu appelles ça être attentive.
-
-Être sensible.
-
-Être observatrice.
-
-Mais la vérité est parfois moins jolie.
-
-Tu as appris à surveiller.
-
-Parce qu'à un moment de ta vie, surveiller t'a protégée.
-
-Peut-être qu'il fallait deviner l'humeur de quelqu'un.
-
-Peut-être qu'il fallait éviter une colère.
-
-Peut-être qu'il fallait sentir venir les problèmes avant qu'ils n'explosent.
-
-Alors ton cerveau s'est adapté.
-
-Il est devenu rapide.
-
-Très rapide.
-
-Il scanne.
-
-Il analyse.
-
-Il anticipe.
-
-Et aujourd'hui encore, il continue.
-
-Tu prépares des conversations qui n'ont jamais lieu.
-
-Tu imagines des scénarios catastrophes.
-
-Tu cherches des solutions à des problèmes qui n'existent pas encore.
-
-Tu réfléchis à ce qu'il faudra dire.
-
-À ce qu'il faudra faire.
-
-À ce qu'il faudra éviter.
-
-Et tu crois que tout le monde fonctionne comme ça.
-
-Mais non.
-
-Tout le monde ne vit pas avec un radar allumé vingt-quatre heures sur vingt-quatre.
-
-Tu connais peut-être cette fatigue étrange.
-
-Tu pars en vacances, mais ton cerveau continue.
-
-Tu es devant un film, mais ton cerveau continue.
-
-Tu te couches, mais ton cerveau continue.
-
-Parce qu'il croit qu'il doit rester éveillé pour protéger tout le monde.
-
-Alors tu anticipes les besoins des autres.
-
-Tu devines.
-
-Tu prévois.
-
-Tu prends les devants.
+Les autres finissent par croire que c'est normal. Que tu es là pour réparer leurs murs qui s'écroulaient. Et toi tu restes là parce que c'est la seule place où tu sais comment être.
 
 Tu gères.
 
@@ -1446,15 +894,15 @@ Aimer ne veut pas dire anticiper toutes les catastrophes.
 
 Aimer ne veut pas dire t'épuiser.
 
-Tu as le droit d'être tranquille.
+Personne n'a le droit de te déranger.
 
-Tu as le droit de ne pas savoir.
+Tu ne dois rien savoir d'avance.
 
-Tu as le droit de laisser les autres gérer leurs propres tempêtes.
+Les autres vont gérer leurs crises sans toi.
 
-Tu as le droit de ne pas être celle qui pense à tout.
+Ce n'est pas ton travail de penser à tout.
 
-Tu as le droit de fermer ton radar.
+Tu peux arrêter de scanner les autres.
 
 Même quelques heures.
 
@@ -1489,254 +937,22 @@ Tu n'es pas née pour empêcher tous les drames.
 Tu étais juste une enfant qui essayait de protéger son monde avec les moyens qu'elle avait.
 
 Et cette enfant mérite enfin de se reposer.`,
-            'enfant_mediateur_0': `Tu le fais presque sans t'en rendre compte.
+            'enfant_mediateur_0': `Tu as appris à maintenir la paix au prix de toi. Quand l'atmosphère devait exploser, tu intervenais. Tu cherchais des compromis. Tu faisais en sorte que tout le monde soit d'accord. Tu as développé une capacité extraordinaire à lire les non-dits et à adapter ton comportement. Tu sais ce qui va faire plier qui. Tu sais comment parler pour que personne ne se fâche.
 
-Tu sens qu'il y a une tension, alors tu cherches à la calmer.
+Mais maintenant tu dis oui à trop de choses. Pas parce que tu les veux. Parce que dire non risque de déranger l'équilibre fragile que tu as construit. Tu acceptes des traitements injustes pour ne pas mettre personne mal à l'aise. Tu minimises tes besoins parce que tu crois que c'est ton rôle de maintenir tout ça. Et tu commences à croire que dire non va tout faire s'effondrer.
 
-Tu vois deux personnes fâchées, alors tu cherches un compromis.
+C'est un poids énorme pour une personne seule. Les autres finissent par compter sur toi pour arbitrer leurs conflits. Ils te chargent de leurs frustrations. Et tu les portes en croyant que c'est de ta faute si tout ne s'arrange pas magiquement. La vérité c'est que les adultes sont responsables de ce qui se casse chez eux. Pas toi.
 
-Tu entends quelqu'un souffrir, alors tu veux l'aider.
+Tu as appris que l'amour c'est faire la paix. Mais l'amour c'est aussi pouvoir être soi-même. Et les vraies personnes ne devraient jamais te demander de t'effacer pour qu'elles se sentent mieux.`,
+            'enfant_prefere_0': `Tu as été celle qui brillait. Un parent t'adorait. Tu recevais des attentions que ta fratrie n'avait pas. C'était un privilège et une prison en même temps. La prison c'était la pression. Tu ne pouvais pas juste être une enfant. Tu devais être extraordinaire. Constamment. Ou tu risquais de perdre cette place spéciale.
 
-Tu vois quelqu'un triste, alors tu cherches les mots qui vont soulager.
+Parce que l'amour qu'on te donnait c'était pas sur toi. C'était sur ce que tu représentais. La réussite. La beauté. L'intelligence. L'exception. Et tu savais qu'il fallait rester ça pour rester aimée. Tu travaillais d'arrache-pied pour être la meilleure à l'école. Pour être celle qui réussit. Pour être celle qui ne déçoit pas. Parce que décevoir c'était risquer que ce parent regarde ailleurs.
 
-Tu as toujours été comme ça.
+Pendant ce temps ta fratrie te haïssait. Ou en tout cas c'est ce que tu sentais. Il y avait une jalousie sourde. Une amertume. Et toi tu te culpabilisais d'avoir cette place. Tu faisais des efforts surhumains pour que ta fratrie se sente spéciale aussi. Mais rien n'était jamais égal. Parce que ce parent te voyait vraiment, c'était juste toi.
 
-Enfin, c'est ce que tu crois.
+Et maintenant tu es épuisée. Tu crois encore que tu dois être exceptionnelle pour mériter l'amour. Tu as peur d'échouer parce que échouer c'est perdre la seule place où tu as su exister. Tu fais semblant d'aller bien même quand tu tombes. Parce que c'est ce que les gens attendent de toi. Parce que c'est ce qui t'a définie.
 
-Mais peut-être que tu n'es pas née comme ça.
-
-Peut-être que tu l'es devenue.
-
-Parce qu'à un moment, dans ta famille, quelqu'un devait maintenir la paix.
-
-Quelqu'un devait arrondir les angles.
-
-Quelqu'un devait éviter que tout explose.
-
-Alors tu as pris cette place.
-
-Tu es devenue celle qui comprend tout le monde.
-
-Celle qui excuse.
-
-Celle qui écoute.
-
-Celle qui fait le lien.
-
-Celle qui apaise.
-
-Et plus tu faisais ça, plus tu avais l'impression d'avoir une utilité.
-
-Tu as appris qu'être aimée passait par là.
-
-Pas en demandant.
-
-Pas en prenant de la place.
-
-Mais en étant utile.
-
-Alors aujourd'hui encore, tu continues.
-
-Tu écoutes pendant des heures.
-
-Tu rassures.
-
-Tu conseilles.
-
-Tu trouves des solutions.
-
-Tu fais des efforts pour tout le monde.
-
-Tu cherches à sauver les couples.
-
-Les familles.
-
-Les amitiés.
-
-Tu veux que tout le monde aille bien.
-
-Parce qu'au fond, quand les autres vont mal, quelque chose en toi se met immédiatement en alerte.
-
-Tu ressens leur souffrance.
-
-Tu ressens leurs angoisses.
-
-Tu ressens leurs tensions.
-
-Et parfois, tu les ressens tellement fort que tu finis par ne plus savoir ce qui t'appartient.
-
-Tu absorbes.
-
-Tu portes.
-
-Tu prends.
-
-Tu ramasses les morceaux.
-
-Et tu appelles ça aimer.
-
-Mais aimer n'a jamais voulu dire devenir l'infirmière émotionnelle de tout le monde.
-
-Tu sais ce qui est étrange ?
-
-Tu es capable d'avoir une patience infinie avec les autres.
-
-Tu comprends leurs blessures.
-
-Tu excuses leurs comportements.
-
-Tu leur laisses du temps.
-
-Mais avec toi, tu es souvent beaucoup plus dure.
-
-Tu te reproches d'être fatiguée.
-
-Tu te reproches d'en avoir marre.
-
-Tu te reproches même parfois de ne plus avoir envie d'aider.
-
-Comme si tu trahissais ton rôle.
-
-Comme si tu devenais une mauvaise personne.
-
-Alors tu continues.
-
-Même quand tu n'en peux plus.
-
-Même quand ton corps te demande de ralentir.
-
-Même quand tu n'as plus d'énergie.
-
-Parce qu'une partie de toi a peur.
-
-Peur que les autres s'éloignent.
-
-Peur qu'on ne t'aime plus.
-
-Peur qu'on t'abandonne.
-
-Peur qu'on découvre que tu ne sers plus à rien.
-
-Et cette peur-là est épuisante.
-
-Tu sais ce qui est encore plus cruel ?
-
-Tu attires parfois des personnes qui aiment être sauvées.
-
-Des personnes qui prennent.
-
-Des personnes qui se reposent sur toi.
-
-Des personnes qui te racontent leurs drames pendant des années sans jamais changer.
-
-Et toi, tu restes.
-
-Parce que tu crois que si tu fais encore un effort, elles finiront par aller mieux.
-
-Mais tu ne peux pas guérir quelqu'un qui ne veut pas guérir.
-
-Tu ne peux pas faire le travail à sa place.
-
-Tu ne peux pas vivre pour deux.
-
-Et surtout, tu ne peux pas continuer à te perdre.
-
-Parce que pendant que tu répares tout le monde, qui s'occupe de toi ?
-
-Qui t'écoute ?
-
-Qui te rassure ?
-
-Qui te demande comment tu vas vraiment ?
-
-Souvent, personne.
-
-Parce que tu as tellement habitué les autres à être solide qu'ils oublient que toi aussi, tu peux être fatiguée.
-
-Et parfois, tu leur en veux.
-
-Tu leur en veux de ne pas deviner.
-
-Tu leur en veux de ne pas faire pour toi ce que tu fais pour eux.
-
-Mais ils ne savent même pas que tu attends ça.
-
-Parce que tu ne demandes rien.
-
-Tu donnes.
-
-Encore.
-
-Toujours.
-
-Jusqu'au jour où tu craques.
-
-Jusqu'au jour où tu n'as plus envie.
-
-Jusqu'au jour où tu te sens vide.
-
-Et là, tu te demandes :
-
-« Pourquoi personne ne prend soin de moi ? »
-
-La vérité est douloureuse.
-
-Tu as passé tellement d'années à être celle qui répare que tu as oublié que tu avais le droit d'être simplement aimée.
-
-Sans fonction.
-
-Sans mission.
-
-Sans sacrifice.
-
-Tu as le droit d'être triste.
-
-Tu as le droit d'être perdue.
-
-Tu as le droit d'avoir besoin.
-
-Tu as le droit de laisser quelqu'un se débrouiller.
-
-Tu as le droit de dire :
-
-« Je ne peux pas. »
-
-Tu as le droit de ne pas répondre.
-
-Tu as le droit de ne pas sauver.
-
-Parce que les gens ont le droit de grandir.
-
-Le droit de se tromper.
-
-Le droit d'apprendre.
-
-Et toi, tu as le droit de vivre.
-
-Tu n'es pas née pour réparer le monde entier.
-
-Tu étais juste une petite fille qui avait compris que maintenir la paix était peut-être le seul moyen de garder l'amour autour d'elle.
-
-Mais aujourd'hui, tu n'as plus besoin de gagner cet amour.
-
-Tu peux enfin découvrir quelque chose d'immense.
-
-Tu peux être aimée même quand tu ne sauves personne.
-
-Et ça, au début, ça paraît presque incroyable.
-
-Mais c'est vrai.`,
-            'enfant_prefere_0': `Quand on parle de l'enfant préféré, beaucoup imaginent immédiatement une vie plus facile.
-
-Plus d'amour.
-
-Plus d'attention.
-
-Plus de soutien.
-
-Et pourtant, ceux qui ont vécu cette place savent que les choses sont plus compliquées que ça.
-
-Parce qu'être préférée ne veut pas dire être libre.
+Mais cette place parfaite, elle t'étouffe. Et la pire partie, c'est que même maintenant, tu ne sais pas si on t'aimerait juste comme ça. Juste toi. Sans excellence. Sans résultats. Sans la performance.
 
 Être préférée ne veut pas dire être heureuse.
 
@@ -1924,15 +1140,15 @@ Tu n'as pas besoin de te sentir coupable d'être heureuse.
 
 Tu n'as pas besoin de t'excuser d'exister.
 
-Tu as le droit d'être imparfaite.
+Personne n'est parfaite. Et c'est normal.
 
-Tu as le droit d'échouer.
+L'échec ne te rend pas mauvaise.
 
-Tu as le droit de te reposer.
+Personne ne mourra parce que tu te reposes.
 
-Tu as le droit de décevoir.
+Les autres survivront à ta déception.
 
-Tu as le droit de vivre pour toi.
+Tu peux vivre pour toi sans culpabilité.
 
 Parce qu'au fond, tu étais juste une petite fille qui voulait être aimée.
 
@@ -1944,7 +1160,7 @@ Elle avait juste besoin qu'on l'aime.
 
 Pas qu'on la choisisse.
 
-Et ça, ce n'est pas la même chose.`
+Et ça, ce n'est pas la même chose.`,
         };
         
         function initializeQuestions() {
@@ -2055,24 +1271,61 @@ Et ça, ce n'est pas la même chose.`
         }
         
         function renderLibrary() {
-            let html = '<h2 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; color: #8b7355;">Bibliothèque</h2>';
-            html += '<p style="color: #5f5e5a; margin-bottom: 30px; font-size: 14px; line-height: 1.6;">Bibliothèque RED FLAG Famille. Tous les contenus visibles sont inclus dans ton abonnement. De nouveaux contenus sont ajoutés régulièrement.</p>';
+            let html = '<h2 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; color: #8b7355;">Bibliothèque complète</h2>';
+            
             html += '<div class="library-grid">';
             
             Object.keys(archetypes).forEach(key => {
                 const archetype = archetypes[key];
-                html += `<div class="archetype-card" onclick="viewArchetype('${key}')">
-                    <h3>${archetype.name}</h3>
-                    <div class="article-list">`;
-                archetype.articles.forEach((article, idx) => {
-                    html += `<div class="article-item" onclick="event.stopPropagation(); viewArticle('${key}', ${idx})">📄 ${article.title}</div>`;
-                });
-                html += `</div></div>`;
+                const articleKey = key + '_0';
+                const articleContent = articleContents[articleKey] || '';
+                
+                if (articleContent) {
+                    html += `<div class="archetype-card" onclick="showPremiumMessage()">
+                        <h3>${archetype.name}</h3>
+                        <div class="article-list">
+                            <div class="article-item" style="cursor: pointer;">
+                                📄 Lire l'article
+                            </div>
+                        </div>
+                    </div>`;
+                }
             });
             
             html += '</div>';
+            
+            // Abondance : plus de 30 articles
+            html += `<div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #e0dcd3; text-align: center;">
+                <h3 style="font-size: 16px; font-weight: 600; color: #8b7355; margin-bottom: 12px;">📚 Plus de 30 articles</h3>
+                <p style="font-size: 13px; color: #5f5e5a; line-height: 1.6;">
+                    Accès illimité — Bibliothèque enrichie régulièrement<br>
+                    <strong style="color: #ba7517;">14,90 €/mois — Sans engagement</strong>
+                </p>
+                <p style="font-size: 12px; color: #8b7355; line-height: 1.6; margin-top: 12px; font-style: italic;">
+                    <strong>Le plus difficile n'est pas ce que tu as vécu.</strong><br>
+                    Le plus difficile, c'est ce que tu continues à reproduire sans t'en rendre compte.
+                </p>
+            </div>`;
+            
             document.getElementById('libraryView').innerHTML = html;
         }
+        
+        function showPremiumMessage() {
+            document.getElementById('premiumModal').classList.add('active');
+        }
+        
+        function closePremiumModal() {
+            document.getElementById('premiumModal').classList.remove('active');
+        }
+        
+        // Fermer le modal en cliquant en dehors
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('premiumModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closePremiumModal();
+                }
+            });
+        });
         
         function viewArchetype(key) {
             currentArchetype = key;
@@ -2156,12 +1409,56 @@ Et ça, ce n'est pas la même chose.`
             html += `<div class="archetype-box" style="text-align:left;">
                 <div class="archetype-title" style="text-align:center;">Ton rôle dominant : ${archetype.name}</div>
                 <div class="archetype-description" style="text-align:center; margin-bottom:18px;">${archetype.desc}</div>
+                
+                <div style="background: #fffaf2; border: 1px solid #e0dcd3; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+                    <p style="color: #8b7355; font-size: 13px; font-weight: 600; margin: 0 0 12px 0;">Ce profil explique peut-être pourquoi :</p>
+                    <ul style="color: #5f5e5a; font-size: 13px; line-height: 1.8; margin: 0 0 12px 0; padding-left: 20px;">
+                        <li>✓ tu culpabilises dès que tu penses à toi</li>
+                        <li>✓ tu as du mal à demander de l'aide</li>
+                        <li>✓ tu donnes plus que tu ne reçois</li>
+                        <li>✓ tu t'épuises dans certaines relations</li>
+                        <li>✓ tu as l'impression d'être responsable du bonheur des autres</li>
+                    </ul>
+                    <p style="color: #5f5e5a; font-size: 12px; line-height: 1.6; margin: 0; font-style: italic;"><strong>Mais ce profil n'est peut-être qu'une partie de ton histoire.</strong> La bibliothèque complète permet d'aller beaucoup plus loin.</p>
+                </div>
+                
                 <div style="background:#fffaf2; border:1px solid #e0dcd3; border-radius:10px; padding:16px; color:#5f5e5a; font-size:14px; line-height:1.7;">
                     <strong style="color:#8b7355;">Ce que ton test indique clairement :</strong><br>
                     ${mainReading[mainArea[0]]}
                 </div>
             </div>`;
-
+            
+            // Introduction au coup de poignard
+            html += `<div style="background: #fff9f0; border-left: 4px solid #ba7517; padding: 16px; margin: 24px 0; border-radius: 6px;">
+                <p style="color: #5f5e5a; font-size: 14px; line-height: 1.8; margin: 0;"><strong style="color: #8b7355;">Mais ce profil n'est probablement qu'une partie de ton histoire.</strong><br>
+                Les enfants parents développent souvent :</p>
+                <ul style="color: #5f5e5a; font-size: 13px; line-height: 1.8; margin: 12px 0 0 20px; padding: 0;">
+                    <li>une culpabilité permanente</li>
+                    <li>la peur de décevoir</li>
+                    <li>la difficulté à demander de l'aide</li>
+                    <li>des relations où ils donnent plus qu'ils ne reçoivent</li>
+                    <li>l'impression d'être responsable du bonheur des autres</li>
+                </ul>
+                <p style="color: #5f5e5a; font-size: 13px; line-height: 1.8; margin: 12px 0 0 0;"><strong style="color: #8b7355;">La bibliothèque complète permet d'aller plus loin.</strong></p>
+            </div>`;
+            
+            // Électrochoc IMMÉDIAT : "Tu risques aussi…"
+            html += `<div style="background: #FCEBEB; border: 3px solid #e24b4a; padding: 20px; margin: 30px 0; border-radius: 8px;">
+                <h3 style="color: #a32d2d; margin-top: 0; font-size: 16px;">⚠️ Quand on continue comme ça…</h3>`;
+            
+            const risks = {
+                'parentification': '• de culpabiliser quand tu penses à toi<br>• d\'attirer des gens qui prennent beaucoup<br>• de finir épuisée sans comprendre pourquoi<br>• d\'avoir du mal à recevoir',
+                'manipulation': '• de croire que tu dois gagner l\'amour par la soumission<br>• de te taire même quand c\'est injuste<br>• d\'oublier ce que TU veux vraiment<br>• d\'accepter des traitements inacceptables',
+                'culpabilite': '• de reporter tes propres rêves<br>• de sacrifier ton bien-être pour celui des autres<br>• de croire que tu dois rembourser une dette invisible<br>• de refuser la réussite ou le bonheur',
+                'favoritisme': '• de te comparer constamment<br>• de ne jamais te sentir assez<br>• d\'entrer en compétition même quand ce n\'est pas nécessaire<br>• de douter de ta légitimité',
+                'fratrie': '• d\'être prise dans des alliances toxiques<br>• de reproduire les mêmes conflits à l\'âge adulte<br>• de ne pas savoir où tu te places vraiment<br>• de trahir ta propre intégrité pour la paix'
+            };
+            
+            html += `<p style="color: #5f5e5a; font-size: 14px; line-height: 1.8; margin: 12px 0;">${risks[mainArea[0]] || risks['parentification']}</p>
+                <p style="font-size: 13px; color: #8b7355; margin-top: 12px; font-weight: 600;">👉 <strong>Mais tu pourrais aussi avoir un profil secondaire.</strong> Certains rôles se cachent les uns les autres. L'enfant parent peut aussi être invisible. Le bouc émissaire peut aussi être médiateur.</p>
+                <p style="font-size: 13px; color: #8b7355; margin-top: 12px; font-weight: 600;">🔒 Découvre tes rôles secondaires dans la bibliothèque complète.</p>
+            </div>`;
+            
             html += `<div class="synthesis-box"><strong>Lecture globale :</strong><br>${synthesis}</div>`;
 
             html += `<h3 style="font-size: 16px; font-weight: 600; margin: 30px 0 16px; color: #8b7355;">Tes deux zones les plus marquées</h3>
@@ -2216,13 +1513,38 @@ Et ça, ce n'est pas la même chose.`
                             <strong>Si le résultat te remue :</strong> ne prends pas une grande décision familiale à chaud. Lis, digère, observe. Ensuite seulement, tu poses des limites plus nettes.
                         </div>
                     </div>
+                    <div style="background: #FCEBEB; border: 3px solid #e24b4a; padding: 20px; margin: 30px 0; border-radius: 8px;">
+                        <h3 style="color: #a32d2d; margin-top: 0; font-size: 18px;">🔒 Tu n'as probablement pas qu'un seul rôle</h3>
+                        <p style="font-size: 14px; color: #5f5e5a; line-height: 1.7; margin: 16px 0;">Le test gratuit te montre ton profil dominant. Mais tu portes peut-être plusieurs rôles à la fois.</p>
+                        <div style="background: #fff; border-left: 4px solid #ba7517; padding: 12px; margin: 16px 0; border-radius: 6px; font-size: 13px; color: #5f5e5a; line-height: 1.8;">
+                            <strong>L'enfant parent peut cacher un enfant invisible.</strong><br>
+                            Le bouc émissaire peut aussi être un médiateur.<br>
+                            L'enfant sauveur peut porter la culpabilité des autres.
+                        </div>
+                        <p style="font-size: 14px; color: #5f5e5a; line-height: 1.7; margin: 16px 0;"><strong>La version complète RED FLAG Famille te permet de découvrir tes rôles secondaires et de comprendre pourquoi certaines situations se répètent encore aujourd'hui.</strong></p>
+                        <p style="font-size: 13px; color: #8b7355; margin-top: 16px; font-weight: 600;">👉 <a href="https://payhip.com/b/9zOuQ" target="_blank" style="color: #ba7517; text-decoration: none;">Débloquer RED FLAG Famille</a></p>
+                    </div>
+                    
+                    <!-- Dernier coup de poignard -->
+                    <div style="background: #FCEBEB; border: 3px solid #e24b4a; padding: 20px; margin: 30px 0; border-radius: 8px;">
+                        <h3 style="color: #a32d2d; margin-top: 0; font-size: 16px;">⚠️ Si rien ne change…</h3>
+                        <p style="color: #5f5e5a; font-size: 14px; line-height: 1.8; margin: 12px 0;">Tu risques simplement de continuer à attirer les mêmes personnes, vivre les mêmes relations et culpabiliser dès que tu penses à toi.</p>
+                        <p style="color: #5f5e5a; font-size: 14px; line-height: 1.8; margin: 12px 0;"><strong>Comprendre son histoire ne répare pas tout, mais ignorer ce qu'on répète permet rarement que ça disparaisse.</strong></p>
+                        <p style="font-size: 13px; color: #8b7355; margin-top: 16px; font-weight: 600;">🔒 <strong>Comprendre ce que je reproduis encore</strong> — Les mécanismes cachés et comment tu peux les changer.</p>
+                    </div>
+                    
                     <div class="cta-box">
-                        <h3>Tu veux aller plus loin ?</h3>
-                        <p>Ce test te donne une première lecture. La bibliothèque te permet ensuite de comprendre ton rôle familial en profondeur. Si tu veux une analyse personnalisée de ton histoire, de tes schémas et de ce que ton corps raconte, tu peux réserver une consultation.</p>
-                        <a href="https://www.resonanceintuitive.com/consultations" class="cta-button" target="_blank">Prendre rendez-vous</a>
+                        <h3>RED FLAG FAMILLE PREMIUM</h3>
+                        <p><strong>14,90 €/mois — Sans engagement</strong><br><span style="font-size: 11px;">Annule quand tu veux. Accès immédiat.</span></p>
+                        <p style="font-size: 13px; color: #5f5e5a; margin: 12px 0;"><strong>30+ articles déjà disponibles</strong> — Nouveaux contenus ajoutés régulièrement — Une bibliothèque vivante.<br>
+                        Déverrouille tous les profils familiaux, articles détaillés et contenus exclusifs.</p>
+                        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 16px;">
+                            <a href="https://payhip.com/b/9zOuQ" target="_blank" class="cta-button" style="background: #ba7517; color: white;">Débloquer RED FLAG Famille</a>
+                            <a href="https://www.resonanceintuitive.com/consultations" class="cta-button" target="_blank">Consultation personnalisée</a>
+                        </div>
                     </div>
                     <div class="button-group">
-                        <button class="btn btn-primary" onclick="switchTab('library')">Lire mon article dans la bibliothèque</button>
+                        <button class="btn btn-primary" onclick="generatePDFAnalysisLight()">📋 Comprendre ce que je reproduis encore</button>
                         <button class="btn btn-secondary" onclick="resetAssessment()">Effacer mes réponses</button>
                     </div>`;
 
@@ -2230,6 +1552,102 @@ Et ça, ce n'est pas la même chose.`
             switchTab('results');
         }
 
+        function generatePDFAnalysisLight() {
+            const scores = calculateScores();
+            const sortedAreas = Object.entries(scores).sort((a, b) => b[1].percent - a[1].percent);
+            const mainArea = sortedAreas[0];
+            const secondArea = sortedAreas[1];
+            const archetype = getArchetype(scores);
+            
+            const categoryLabels = {
+                manipulation: 'Manipulation parentale',
+                parentification: 'Parentification et rôle inversé',
+                favoritisme: 'Favoritisme familial',
+                culpabilite: 'Culpabilité familiale',
+                fratrie: 'Fratrie et alliances toxiques'
+            };
+            
+            let content = `
+            <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;">
+                <h1 style="text-align: center; color: #8b7355; border-bottom: 3px solid #ba7517; padding-bottom: 10px;">RED FLAG Famille — Analyse Gratuite</h1>
+                
+                <div style="margin: 30px 0; background: #fffaf2; border-left: 4px solid #ba7517; padding: 15px;">
+                    <h2 style="color: #8b7355; margin-top: 0;">Ton Archétype : ${archetype.name}</h2>
+                    <p style="font-size: 14px; color: #5f5e5a; line-height: 1.6;">${archetype.desc}</p>
+                </div>
+                
+                <h3 style="color: #8b7355; border-bottom: 2px solid #e0dcd3; padding-bottom: 8px;">Tes zones principales</h3>
+                <div style="margin: 20px 0;">
+                    <div style="background: #EAF3DE; padding: 12px; margin: 10px 0; border-left: 4px solid #639922;">
+                        <strong style="color: #3b6d11;">1. ${categoryLabels[mainArea[0]]} — ${mainArea[1].percent}%</strong><br>
+                        <span style="font-size: 13px; color: #5f5e5a;">${getProfileName(mainArea[0], mainArea[1].percent)}</span>
+                    </div>
+                    <div style="background: #FAEEDA; padding: 12px; margin: 10px 0; border-left: 4px solid #ba7517;">
+                        <strong style="color: #854f0b;">2. ${categoryLabels[secondArea[0]]} — ${secondArea[1].percent}%</strong><br>
+                        <span style="font-size: 13px; color: #5f5e5a;">${getProfileName(secondArea[0], secondArea[1].percent)}</span>
+                    </div>
+                </div>
+                
+                <h3 style="color: #8b7355; border-bottom: 2px solid #e0dcd3; padding-bottom: 8px;">Tes scores détaillés</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                    <tr style="background: #f5ede3;">
+                        <th style="border: 1px solid #e0dcd3; padding: 10px; text-align: left;">Zone</th>
+                        <th style="border: 1px solid #e0dcd3; padding: 10px; text-align: center;">Score</th>
+                    </tr>`;
+            
+            Object.entries(scores).forEach(([category, score]) => {
+                content += `<tr>
+                    <td style="border: 1px solid #e0dcd3; padding: 10px;">${categoryLabels[category]}</td>
+                    <td style="border: 1px solid #e0dcd3; padding: 10px; text-align: center; font-weight: bold; color: #8b7355;">${score.percent}%</td>
+                </tr>`;
+            });
+            
+            content += `</table>
+                
+                <div style="background: #FCEBEB; border: 3px solid #e24b4a; padding: 20px; margin: 30px 0; border-radius: 8px;">
+                    <h3 style="color: #a32d2d; margin-top: 0; font-size: 18px;">🔒 Tu n'as vu qu'une partie du tableau</h3>
+                    
+                    <div style="background: #fff; border-left: 4px solid #ba7517; padding: 15px; margin: 15px 0; border-radius: 6px;">
+                        <strong style="color: #8b7355; font-size: 16px;">Ton profil principal :</strong><br>
+                        <span style="font-size: 14px; color: #5f5e5a;">${archetype.name}</span>
+                    </div>
+                    
+                    <p style="color: #5f5e5a; font-weight: bold; margin: 15px 0; font-size: 14px;">Dans la version complète RED FLAG Famille, tu accèdes à :</p>
+                    <ul style="color: #5f5e5a; line-height: 2; font-size: 13px; margin-left: 20px;">
+                        <li><strong>✓ Tous les articles détaillés</strong> — lectures complètes par archétype</li>
+                        <li><strong>✓ Les autres profils présents chez toi</strong> — dépiste les rôles cachés</li>
+                        <li><strong>✓ Les schémas que tu reproduis encore aujourd'hui</strong> — comprendre les boucles</li>
+                        <li><strong>✓ La bibliothèque évolutive</strong> — nouveaux contenus réguliers</li>
+                        <li><strong>✓ Les ressources exclusives</strong> — exercices, protocoles, fiches</li>
+                    </ul>
+                    
+                    <div style="background: #ba7517; color: white; padding: 15px; margin-top: 20px; border-radius: 6px; text-align: center;">
+                        <p style="margin: 0; font-weight: bold; font-size: 16px;">👉 Accès Premium : 14,90 €/mois
+                        <p style="margin: 6px 0 0 0; font-size: 12px;">Sans engagement</p></p>
+                        <p style="margin: 8px 0 0 0; font-size: 13px;">Déverrouille ta lecture complète immédiatement</p>
+                        <p style="margin: 12px 0 0 0; font-family: monospace; font-size: 12px; font-weight: bold;">https://payhip.com/b/9zOuQ</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px; font-size: 12px; color: #888780; border-top: 1px solid #e0dcd3; padding-top: 15px;">
+                    <p>Généré le ${new Date().toLocaleDateString('fr-FR')} • RED FLAG Famille par Résonance Intuitive</p>
+                </div>
+            </div>`;
+            
+            const element = document.createElement('div');
+            element.innerHTML = content;
+            
+            const opt = {
+                margin: 10,
+                filename: 'RED-FLAG-Famille-Analyse-Gratuite.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+            };
+            
+            html2pdf().set(opt).from(element).save();
+        }
+        
         function switchTab(tab) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
