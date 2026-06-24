@@ -548,7 +548,7 @@
             <h1>🚩 RED FLAG Famille</h1>
             <p style="font-size: 16px; font-weight: 600; margin: 16px 0;">Tu culpabilises pour tout ?<br>Tu te justifies alors que tu n'as rien fait ?<br>Tu portes des problèmes qui ne sont pas les tiens ?</p>
             <p style="font-size: 14px; opacity: 0.9; margin-top: 12px;">Découvre le rôle que ta famille t'a fait jouer.</p>
-            <p style="font-size: 12px; opacity: 0.85; margin-top: 12px;"><strong>🆓 Test gratuit</strong> — Les résultats sont pour toi. Accès à la bibliothèque complète : 14,90 €/mois, sans engagement.</p>
+            <p style="font-size: 12px; opacity: 0.85; margin-top: 12px;"><strong>🆓 Test gratuit</strong> — Profil dominant gratuit. Lecture complète et bibliothèque : 14,90 €/mois, sans engagement.</p>
         </div>
         
         <div class="content">
@@ -560,7 +560,7 @@
             
             <div id="assessment" class="tab-content active">
                 <div style="background: #EAF3DE; border: 1px solid #639922; border-radius: 8px; padding: 12px; margin-bottom: 20px; font-size: 13px; color: #3b6d11;">
-                    <strong>✓ Gratuit</strong> — Réponds à toutes les questions pour découvrir ton profil et tes résultats détaillés, complètement gratuitement.
+                    <strong>✓ Gratuit</strong> — Réponds à toutes les questions pour découvrir ton profil dominant gratuitement. La lecture complète reste réservée aux abonnés.
                 </div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
@@ -894,6 +894,7 @@
                     Accès au guide RED FLAG Famille actuel, puis aux contenus ajoutés au fil des mises à jour.<br>
                     <strong style="color: #ba7517;">14,90 €/mois — Sans engagement</strong>
                 </p>
+                <a href="https://payhip.com/b/9zOuQ" target="_blank" style="background:#ba7517;color:white;display:inline-block;margin-top:14px;padding:12px 26px;border-radius:8px;text-decoration:none;font-weight:700;">🔓 Débloquer la bibliothèque complète</a>
                 <p style="font-size: 12px; color: #8b7355; line-height: 1.6; margin-top: 12px; font-style: italic;">
                     <strong>Le plus difficile n'est pas ce que tu as vécu.</strong><br>
                     Le plus difficile, c'est ce que tu continues à reproduire sans t'en rendre compte.
@@ -1065,15 +1066,13 @@
                 <div class="profile-badge"><strong>1. ${categoryLabels[mainArea[0]]} — ${mainArea[1].percent}%</strong>${getProfileName(mainArea[0], mainArea[1].percent)}</div>
                 <div class="profile-badge"><strong>2. ${categoryLabels[secondArea[0]]} — ${secondArea[1].percent}%</strong>${getProfileName(secondArea[0], secondArea[1].percent)}</div>`;
 
-            html += '<h3 style="font-size: 16px; font-weight: 600; margin: 30px 0 16px; color: #8b7355;">Détail de tes scores</h3>';
-            html += '<div style="margin-bottom: 30px;">';
-            Object.entries(scores).forEach(([category, score]) => {
-                const color = getScoreColor(score.percent);
-                const label = categoryLabels[category];
-                const profileName = getProfileName(category, score.percent);
-                html += `<div class="score-card" style="--bg: ${color.bg}; --text: ${color.text}; --border: ${color.border}; --fill: ${color.fill};"><div class="score-label">${label}</div><div class="score-number">${score.percent}%</div><div class="score-bar"><div class="score-bar-fill" style="width: ${score.percent}%"></div></div><div style="margin-top: 8px; font-size: 12px; color: var(--text);">${profileName}</div></div>`;
-            });
-            html += '</div>';
+            html += `<div style="background:#fff8e1; border:2px solid #ffc107; border-radius:10px; padding:20px; margin:30px 0; text-align:center;">
+                <h3 style="color:#856404; margin:0 0 10px 0; font-size:16px;">🔒 Scores détaillés verrouillés</h3>
+                <p style="color:#856404; font-size:13px; line-height:1.7; margin:0 0 14px 0;">
+                    Le gratuit te donne ton rôle dominant et tes deux zones principales. Le détail complet, les rôles secondaires et la lecture approfondie sont réservés à la version complète.
+                </p>
+                <a href="https://payhip.com/b/9zOuQ" target="_blank" style="background:#ba7517;color:white;display:inline-block;padding:11px 24px;border-radius:8px;text-decoration:none;font-weight:700;">Débloquer les scores complets</a>
+            </div>`;
 
             if (criticalAreas.length > 0) {
                 html += '<h3 style="font-size: 16px; font-weight: 600; margin: 30px 0 16px; color: #8b7355;">🚩 Points à regarder en priorité</h3>';
@@ -1091,38 +1090,20 @@
                 html += `<div class="profile-badge"><strong>Résultat global apaisé</strong>Aucune zone ne dépasse 50 %. Cela ne veut pas dire que tout est parfait. Cela veut dire que le test ne montre pas de signal familial dominant très marqué aujourd'hui.</div>`;
             }
 
-            html += `<h3 style="font-size: 16px; font-weight: 600; margin: 30px 0 16px; color: #8b7355;">Ce que tu peux faire maintenant</h3>
-                    <div class="scenario immediate">
-                        <div class="scenario-title">🔴 Cette semaine</div>
-                        <div class="scenario-text">
-                            <strong>Observe ta réaction automatique :</strong> quand tu te sens coupable, obligée de répondre, obligée d'expliquer ou obligée de réparer, note la situation exacte. Pas un roman. Juste : qui, quoi, où, quelle sensation dans le corps.<br><br>
-                            <strong>Pose une limite simple :</strong> choisis une seule demande que tu refuses ou que tu repousses. Exemple : "Je ne peux pas être disponible ce jour-là." Pas besoin de t'excuser pendant trois heures. Les limites ne sont pas des dissertations.
-                        </div>
+            html += `<div style="background:#fffaf2; border:2px solid #ba7517; border-radius:10px; padding:20px; margin:30px 0; text-align:center;">
+                        <h3 style="color:#8b7355; margin:0 0 12px 0; font-size:18px;">🔒 La suite est volontairement verrouillée</h3>
+                        <p style="font-size:14px; color:#5f5e5a; line-height:1.7; margin:0 0 14px 0;">
+                            Le test gratuit t'a montré la porte. Il ne va pas te donner toute la maison, les clés et le canapé. Pour comprendre tes rôles secondaires, les mécanismes cachés et les pistes concrètes de sortie, passe à la version complète.
+                        </p>
+                        <a href="https://payhip.com/b/9zOuQ" target="_blank" style="background:#ba7517;color:white;display:inline-block;padding:12px 26px;border-radius:8px;text-decoration:none;font-weight:700;">🔓 Accéder à la lecture complète</a>
                     </div>
-                    <div class="scenario medium">
-                        <div class="scenario-title">🟠 Pendant 7 jours</div>
-                        <div class="scenario-text">
-                            <strong>Repère le rôle qui revient :</strong> sauveuse, invisible, médiatrice, coupable, préférée, bouc émissaire, enfant parent. Le but n'est pas de coller une étiquette sur ton front, déjà que la vie s'en charge assez mal. Le but est de voir quand ce rôle reprend le volant.<br><br>
-                            <strong>Écris la phrase qui te libère :</strong> "Ce n'est pas à moi de porter ça." Relis-la quand tu sens que tu repars dans le vieux réflexe familial.
-                        </div>
-                    </div>
-                    <div class="scenario long">
-                        <div class="scenario-title">🟢 Pour aller plus loin sans te raconter d'histoires</div>
-                        <div class="scenario-text">
-                            <strong>Va lire l'article de ton archétype :</strong> il reprend ton rôle dominant en profondeur, avec les scènes de vie, les conséquences à l'âge adulte et les mécanismes familiaux qui se répètent.<br><br>
-                            <strong>Si le résultat te remue :</strong> ne prends pas une grande décision familiale à chaud. Lis, digère, observe. Ensuite seulement, tu poses des limites plus nettes.
-                        </div>
-                    </div>
-                    <div style="background: #FCEBEB; border: 3px solid #e24b4a; padding: 20px; margin: 30px 0; border-radius: 8px;">
-                        <h3 style="color: #a32d2d; margin-top: 0; font-size: 18px;">🔒 Tu n'as probablement pas qu'un seul rôle</h3>
-                        <p style="font-size: 14px; color: #5f5e5a; line-height: 1.7; margin: 16px 0;">Le test gratuit te montre ton profil dominant. Mais tu portes peut-être plusieurs rôles à la fois.</p>
-                        <div style="background: #fff; border-left: 4px solid #ba7517; padding: 12px; margin: 16px 0; border-radius: 6px; font-size: 13px; color: #5f5e5a; line-height: 1.8;">
-                            <strong>L'enfant parent peut cacher un enfant invisible.</strong><br>
-                            Le bouc émissaire peut aussi être un médiateur.<br>
-                            L'enfant sauveur peut porter la culpabilité des autres.
-                        </div>
-                        <p style="font-size: 14px; color: #5f5e5a; line-height: 1.7; margin: 16px 0;"><strong>La version complète RED FLAG Famille te permet de découvrir tes rôles secondaires et de comprendre pourquoi certaines situations se répètent encore aujourd'hui.</strong></p>
-                        <p style="font-size: 13px; color: #8b7355; margin-top: 16px; font-weight: 600;">👉 <a href="https://payhip.com/b/9zOuQ" target="_blank" style="color: #ba7517; text-decoration: none;">Débloquer RED FLAG Famille</a></p>
+
+                    <!-- CTA MASSIF #1 : Après reconnaissance du profil -->
+                    <div style="background: linear-gradient(135deg, #ba7517 0%, #9d6512 100%); color: white; padding: 28px; border-radius: 12px; text-align: center; margin: 32px 0; box-shadow: 0 6px 16px rgba(186, 117, 23, 0.35);">
+                        <h3 style="margin: 0 0 14px 0; font-size: 19px; font-weight: 700; letter-spacing: -0.5px;">Tu veux comprendre le reste ?</h3>
+                        <p style="margin: 0 0 20px 0; font-size: 14px; line-height: 1.7; opacity: 0.95;"><strong>Le test gratuit ne montre que ton rôle dominant.</strong><br>Les rôles cachés influencent encore tes relations aujourd'hui.</p>
+                        <a href="https://payhip.com/b/9zOuQ" target="_blank" style="background: white; color: #ba7517; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-block; font-size: 16px; transition: all 0.2s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.12);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 16px rgba(0,0,0,0.18)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.12)';">🔓 Débloquer la version complète</a>
+                        <p style="margin: 16px 0 0 0; font-size: 12px; opacity: 0.88; letter-spacing: 0.3px;">14,90 €/mois • Sans engagement • Accès instantané</p>
                     </div>
                     
                     <!-- Dernier coup de poignard -->
@@ -1131,6 +1112,12 @@
                         <p style="color: #5f5e5a; font-size: 14px; line-height: 1.8; margin: 12px 0;">Tu risques simplement de continuer à attirer les mêmes personnes, vivre les mêmes relations et culpabiliser dès que tu penses à toi.</p>
                         <p style="color: #5f5e5a; font-size: 14px; line-height: 1.8; margin: 12px 0;"><strong>Comprendre son histoire ne répare pas tout, mais ignorer ce qu'on répète permet rarement que ça disparaisse.</strong></p>
                         <p style="font-size: 13px; color: #8b7355; margin-top: 16px; font-weight: 600;">🔒 <strong>Comprendre ce que je reproduis encore</strong> — Les mécanismes cachés et comment tu peux les changer.</p>
+                    </div>
+                    
+                    <!-- CTA SECONDAIRE #2 : Après l'avertissement -->
+                    <div style="background: rgba(186, 117, 23, 0.08); border: 2px solid #ba7517; padding: 22px; border-radius: 10px; margin: 28px 0; text-align: center;">
+                        <p style="margin: 0 0 16px 0; font-size: 15px; color: #5f5e5a; line-height: 1.6;"><strong>La version complète RED FLAG Famille t'explique tout ça en détail.</strong></p>
+                        <a href="https://payhip.com/b/9zOuQ" target="_blank" style="background: #ba7517; color: white; padding: 11px 26px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; font-size: 14px; transition: all 0.2s ease;" onmouseover="this.style.background='#9d6512';" onmouseout="this.style.background='#ba7517';">Accéder aux contenus complets</a>
                     </div>
                     
                     <div class="cta-box">
@@ -1143,12 +1130,18 @@
                             <a href="https://www.resonanceintuitive.com/consultations" class="cta-button" target="_blank">Consultation personnalisée</a>
                         </div>
                     </div>
-                    `;
+                    <div class="button-group">
+                        <a href="https://payhip.com/b/9zOuQ" target="_blank" class="btn btn-primary" style="background: #ba7517; color: white; text-decoration: none; display: inline-block;">🔓 Débloquer RED FLAG Famille — 14,90 €/mois</a>
+                    </div>`;
 
             document.getElementById('resultsContainer').innerHTML = html;
             // Marquer le test comme complété - UN SEUL TEST PAR NAVIGATEUR/APPAREIL
             localStorage.setItem(testCompletedKey, 'true');
             switchTab('results');
+        }
+
+        function generatePDFAnalysisLight() {
+            showPremiumMessage();
         }
 
         function switchTab(tab) {
@@ -1174,6 +1167,9 @@
             }
         }
 
+        function resetAssessment() {
+            clearAssessment();
+        }
         
         initializeQuestions();
     </script>
