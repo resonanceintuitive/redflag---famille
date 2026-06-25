@@ -1,6 +1,6 @@
-<!DOCTYPE html>
 <html lang="fr">
-<head>
+<head><!DOCTYPE html>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RED FLAG Famille</title>
@@ -314,8 +314,8 @@
                 <div id="questionsContainer"></div>
                 
                 <div class="button-group">
-                    <button class="btn btn-primary" onclick="submitAssessment()">Voir mon profil</button>
-                    <button class="btn btn-secondary" onclick="resetAssessment()">Effacer</button>
+                    <button class="btn btn-primary" id="submitBtn" onclick="submitAssessment()">Voir mon profil</button>
+                    <button class="btn btn-secondary" id="resetBtn" onclick="resetAssessment()">Effacer</button>
                 </div>
             </div>
             
@@ -329,6 +329,7 @@
     <script>
         // ===== CONFIGURATION =====
         const testCompletedKey = 'redFlagFamilleTestCompleted';
+        const resultsKey = 'redFlagFamilleResults';
         
         // 20 questions comportementales (5 par catégorie)
         const allQuestions = {
@@ -379,6 +380,10 @@
             favoritisme: {
                 name: "Celle Qui N'Était Jamais Assez",
                 description: "Tu n'étais pas la préférée. Aujourd'hui tu crois devoir mériter ta place."
+            },
+            none: {
+                name: "Aucun rôle dominant net",
+                description: "Tes réponses ne montrent pas de rôle familial dominant avec ce test rapide. Le test complet permettrait d'aller plus loin."
             }
         };
 
@@ -481,8 +486,14 @@
             // Profil dominant (gestion des égalités par tirage au sort)
             const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
             const maxScore = sorted[0][1];
-            const topProfiles = sorted.filter(s => s[1] === maxScore);
-            const mainProfile = topProfiles[Math.floor(Math.random() * topProfiles.length)][0];
+            let mainProfile;
+            
+            if (maxScore === 0) {
+                mainProfile = 'none';
+            } else {
+                const topProfiles = sorted.filter(s => s[1] === maxScore);
+                mainProfile = topProfiles[Math.floor(Math.random() * topProfiles.length)][0];
+            }
 
             let html = `
                 <div class="result-light">
@@ -492,8 +503,10 @@
                         ${profiles[mainProfile].description}
                     </p>
                     <div class="confidence">Premier rôle identifié</div>
-                </div>
+                </div>`;
 
+            if (mainProfile !== 'none') {
+                html += `
                 <div class="secondary-hook">
                     <p>
                         <strong>Mais il est très rare qu'une personne n'ait qu'un seul rôle familial.</strong><br><br>
@@ -523,11 +536,58 @@
                     </p>
                     <a href="https://payhip.com/b/9zOuQ" target="_blank" class="cta-button">Débloquer la version complète</a>
                 </div>
-            `;
+                `;
+            } else {
+                html += `
+                <div class="lock-box">
+                    <h3>📊 Ce que cela signifie</h3>
+                    <p>Ce test rapide identifie les rôles familiaux les plus évidents. Si ton profil ne montre aucun signal fort, ça peut vouloir dire :</p>
+                    <p style="margin-top: 12px;">
+                        • Tu as une relation plus équilibrée avec ta famille,<br>
+                        • Ou tes rôles sont plus complexes et nécessitent une analyse plus profonde.
+                    </p>
+                </div>
+
+                <div class="emotional-context">
+                    <p>
+                        <strong>Si tu sens quand même qu'il y a quelque chose,</strong> le test complet te permettra de creuser plus profondément et d'identifier des mécanismes plus subtils.
+                    </p>
+                </div>
+
+                <div class="cta-box">
+                    <h3>🔓 Explorer plus en profondeur</h3>
+                    <p><strong>RED FLAG Famille Premium — 14,90 €/mois</strong><br><span style="font-size: 12px;">Sans engagement. Annule quand tu veux.</span></p>
+                    <p style="font-size: 13px; margin-top: 12px;">
+                        • L'analyse complète (25 questions)<br>
+                        • Une lecture plus nuancée de tes rôles<br>
+                        • Les mécanismes cachés<br>
+                        • Mises à jour régulières
+                    </p>
+                    <a href="https://payhip.com/b/9zOuQ" target="_blank" class="cta-button">Débloquer la version complète</a>
+                </div>
+                `;
+            }
 
             document.getElementById('resultsContainer').innerHTML = html;
             localStorage.setItem(testCompletedKey, 'true');
+            localStorage.setItem(resultsKey, html);
+            updateButtonsState();
             switchTab('results');
+        }
+
+        function updateButtonsState() {
+            const isTestCompleted = localStorage.getItem(testCompletedKey) === 'true';
+            const submitBtn = document.getElementById('submitBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            
+            if (isTestCompleted) {
+                submitBtn.style.display = 'none';
+                resetBtn.style.display = 'none';
+            } else {
+                submitBtn.style.display = 'inline-block';
+                resetBtn.style.display = 'inline-block';
+                resetBtn.textContent = 'Effacer';
+            }
         }
 
         function switchTab(tab) {
@@ -543,6 +603,7 @@
                 answers = {};
                 localStorage.removeItem('redFlagFamilleAnswers');
                 initializeQuestions();
+                updateButtonsState();
                 switchTab('assessment');
             }
         }
@@ -554,9 +615,14 @@
                 answers = JSON.parse(saved);
             }
             if (localStorage.getItem(testCompletedKey) === 'true') {
+                const savedResults = localStorage.getItem(resultsKey);
+                if (savedResults) {
+                    document.getElementById('resultsContainer').innerHTML = savedResults;
+                }
                 switchTab('results');
             }
             initializeQuestions();
+            updateButtonsState();
         });
     </script>
 </body>
