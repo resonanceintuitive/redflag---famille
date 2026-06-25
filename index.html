@@ -394,6 +394,21 @@
             transform: scale(1.05);
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
+
+
+        /* Protections légères version gratuite */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        input, textarea, button, a {
+            -webkit-user-select: auto;
+            -moz-user-select: auto;
+            -ms-user-select: auto;
+            user-select: auto;
+        }
     </style>
 </head>
 <body>
@@ -429,6 +444,28 @@
     </div>
 
     <script>
+
+        // ===== PROTECTIONS LÉGÈRES GRATUIT =====
+        // Décourage le partage/copier-coller basique du résultat gratuit.
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+
+        document.addEventListener('keydown', function(event) {
+            const key = (event.key || '').toLowerCase();
+            const blocked =
+                key === 'f12' ||
+                (event.ctrlKey && key === 'u') ||
+                (event.ctrlKey && key === 's') ||
+                (event.ctrlKey && key === 'p') ||
+                (event.ctrlKey && event.shiftKey && ['i', 'j', 'c'].includes(key));
+
+            if (blocked) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
         // ===== CONFIGURATION =====
         const testCompletedKey = 'redFlagFamilleTestCompleted';
         const resultsKey = 'redFlagFamilleResults';
@@ -1001,3 +1038,104 @@ C'est pour ça qu'une lecture corporelle approfondie peut révéler des choses q
                     <div class="lock-box" style="margin-top: 30px;">
                         <h3>🔒 Le test gratuit s'arrête là</h3>
                         <p>Tu viens seulement d'identifier le premier rôle. Les 3 autres continuent probablement à influencer tes relations sans que tu t'en rendes compte.</p>
+                    </div>
+
+                    <div class="cta-box">
+                        <h3>🔓 Accéder à la version complète</h3>
+                        <p><strong>RED FLAG Famille Premium — 14,90 €/mois</strong><br><span style="font-size: 12px;">Sans engagement. Annule quand tu veux.</span></p>
+                        <p style="font-size: 13px; margin-top: 12px;">
+                            • Plus de 40 analyses personnalisées <br>
+                            • Découvre les 3 autres rôles qui influencent encore tes relations<br>
+                            • Pourquoi tu attires toujours le même type de personnes<br>
+                            • Les erreurs qui sabotent encore tes relations<br>
+                            • Les solutions concrètes pour sortir de ce rôle
+                        </p>
+                        <!-- SOCIAL PROOF (optionnel - à remplir avec chiffres réels si tu en as) -->
+                        <!-- Décommente la ligne suivante une fois que tu as les chiffres d'utilisateurs -->
+                        <!-- <p style="font-size: 12px; color: #888780; margin-top: 16px; margin-bottom: 12px;">Déjà [X] personnes utilisent RED FLAG Famille pour mieux comprendre leurs schémas relationnels.</p> -->
+                        <a href="https://payhip.com/b/9zOuQ" target="_blank" class="cta-button">Découvrir mes autres rôles</a>
+                    </div>
+
+                    <div class="consultation-cta" style="margin-top: 40px;">
+                        <p style="font-size: 15px; margin-bottom: 12px;"><strong>Prêt(e) à aller encore plus loin ?</strong></p>
+                        <p style="font-size: 14px; margin-bottom: 16px;">Au-delà du test, une consultation Résonance Intuitive te permet de remonter à la source de ces rôles et identifier ce qui continue à les activer aujourd'hui.</p>
+                        <a href="https://www.resonanceintuitive.com/consultations" target="_blank" class="consultation-btn">Réserver ma consultation (75 €)</a>
+                        <p style="font-size: 12px; color: #888780; margin-top: 12px;">En cabinet ou en visio • 1h</p>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="lock-box" style="margin-top: 40px;">
+                        <h3>📊 Ce que cela signifie</h3>
+                        <p>Ce test rapide identifie les rôles familiaux les plus évidents. Si ton profil ne montre aucun signal fort, ça peut vouloir dire :</p>
+                        <p style="margin-top: 12px;">
+                            • Tu as une relation plus équilibrée avec ta famille,<br>
+                            • Ou tes rôles sont plus complexes et nécessitent une analyse plus profonde.
+                        </p>
+                    </div>
+
+                    <div class="cta-box">
+                        <h3>🔓 Explorer plus en profondeur</h3>
+                        <p><strong>RED FLAG Famille Premium — 14,90 €/mois</strong><br><span style="font-size: 12px;">Sans engagement. Annule quand tu veux.</span></p>
+                        <p style="font-size: 13px; margin-top: 12px;">
+                            • L'analyse complète (25 questions)<br>
+                            • Une lecture plus nuancée de tes rôles<br>
+                            • Les mécanismes cachés qui structurent tes relations<br>
+                            • Les solutions pour aller plus loin
+                        </p>
+                        <a href="https://payhip.com/b/9zOuQ" target="_blank" class="cta-button">Voir ce que le test cache encore</a>
+                    </div>
+
+                    <div class="consultation-cta" style="margin-top: 40px;">
+                        <p style="font-size: 15px; margin-bottom: 12px;"><strong>Prêt(e) à aller encore plus loin ?</strong></p>
+                        <p style="font-size: 14px; margin-bottom: 16px;">Une consultation Résonance Intuitive te permet d'analyser les schémas cachés et d'identifier ce qui bloque tes relations.</p>
+                        <a href="https://www.resonanceintuitive.com/consultations" target="_blank" class="consultation-btn">Réserver ma consultation (75 €)</a>
+                        <p style="font-size: 12px; color: #888780; margin-top: 12px;">En cabinet ou en visio • 1h</p>
+                    </div>
+                `;
+            }
+
+            document.getElementById('resultsContainer').innerHTML = html;
+            localStorage.setItem(testCompletedKey, 'true');
+            localStorage.setItem(resultsKey, html);
+            hideTestUI();
+            updateButtonsState();
+        }
+
+        function updateButtonsState() {
+            const isTestCompleted = localStorage.getItem(testCompletedKey) === 'true';
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (isTestCompleted) {
+                submitBtn.style.display = 'none';
+            } else {
+                submitBtn.style.display = 'inline-block';
+            }
+        }
+
+        function hideTestUI() {
+            document.getElementById('progressFill').parentElement.style.display = 'none';
+            document.getElementById('questionsContainer').style.display = 'none';
+            document.querySelector('.button-group').style.display = 'none';
+        }
+
+        // Le test gratuit ne propose aucune fonction visible pour recommencer.
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('redFlagFamilleAnswers');
+            if (saved) {
+                answers = JSON.parse(saved);
+            }
+            if (localStorage.getItem(testCompletedKey) === 'true') {
+                const savedResults = localStorage.getItem(resultsKey);
+                if (savedResults) {
+                    document.getElementById('resultsContainer').innerHTML = savedResults;
+                    hideTestUI();
+                }
+            }
+            initializeQuestions();
+            updateButtonsState();
+        });
+    </script>
+</body>
+</html>
