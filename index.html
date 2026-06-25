@@ -129,365 +129,6 @@
             border-radius: 3px;
         }
         
-        .score-card {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 16px;
-            margin-bottom: 16px;
-        }
-        
-        .score-label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-        }
-        
-        .score-number {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 4px;
-        }
-        
-        .score-bar {
-            height: 8px;
-            background: #e0dcd3;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .score-bar-fill {
-            height: 100%;
-            background: var(--fill);
-            border-radius: 4px;
-        }
-        
-        .archetype-box {
-            background: linear-gradient(135deg, #faeeda 0%, #f5ede3 100%);
-            border: 2px solid #ba7517;
-            border-radius: 12px;
-            padding: 24px;
-            margin: 24px 0;
-            text-align: center;
-        }
-        
-        .archetype-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #8b7355;
-            margin-bottom: 12px;
-        }
-        
-        .archetype-description {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #5f5e5a;
-        }
-        
-        .synthesis-box {
-            background: #f5ede3;
-            border-left: 4px solid #8b7355;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 24px 0;
-            font-size: 14px;
-            line-height: 1.7;
-            color: #5f5e5a;
-        }
-        
-        .profile-badge {
-            background: #f5ede3;
-            border: 1px solid #e0dcd3;
-            border-radius: 10px;
-            padding: 12px 16px;
-            margin-bottom: 12px;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-        
-        .profile-badge strong {
-            display: block;
-            font-size: 14px;
-            margin-bottom: 4px;
-            color: #8b7355;
-        }
-        
-        .scenario {
-            background: #f5ede3;
-            border-left: 4px solid;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 16px;
-        }
-        
-        .scenario.immediate { border-left-color: #e24b4a; }
-        .scenario.medium { border-left-color: #ba7517; }
-        .scenario.long { border-left-color: #639922; }
-        
-        .scenario-title {
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-        
-        .scenario-text {
-            font-size: 13px;
-            line-height: 1.6;
-            color: #5f5e5a;
-        }
-        
-        .cta-box {
-            background: linear-gradient(135deg, #8b7355 0%, #6d5a47 100%);
-            border-radius: 12px;
-            padding: 24px;
-            margin: 30px 0;
-            text-align: center;
-            color: #fff;
-        }
-        
-        .cta-box h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        
-        .cta-box p {
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 16px;
-            opacity: 0.95;
-        }
-        
-        .cta-button {
-            background: #faeeda;
-            color: #8b7355;
-            padding: 12px 28px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.2s ease;
-        }
-        
-        .cta-button:hover {
-            background: #fff;
-            transform: translateY(-1px);
-        }
-        
-        /* Styles pour système freemium */
-        .free-tag {
-            display: inline-block;
-            background: #639922;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-        
-        /* Modal Premium */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-overlay.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: 12px;
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-        }
-        
-        .modal-content h3 {
-            color: #8b7355;
-            font-size: 20px;
-            margin-bottom: 16px;
-        }
-        
-        .modal-content p {
-            color: #5f5e5a;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 12px;
-        }
-        
-        .modal-checklist {
-            text-align: left;
-            background: #fffaf2;
-            border: 1px solid #e0dcd3;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 20px 0;
-            font-size: 13px;
-            color: #5f5e5a;
-        }
-        
-        .modal-checklist li {
-            margin: 8px 0;
-        }
-        
-        .modal-cta {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        
-        .modal-cta a, .modal-cta button {
-            flex: 1;
-            padding: 12px 16px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .modal-unlock {
-            background: #ba7517;
-            color: white;
-        }
-        
-        .modal-unlock:hover {
-            background: #993c1d;
-        }
-        
-        .modal-close {
-            background: #e0dcd3;
-            color: #2c2c2a;
-        }
-        
-        .modal-close:hover {
-            background: #d3d1c7;
-        }
-        
-        .library-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .archetype-card {
-            background: #fafaf8;
-            border: 1.5px solid #e0dcd3;
-            border-radius: 12px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .archetype-card:hover {
-            border-color: #ba7517;
-            box-shadow: 0 4px 16px rgba(186, 117, 23, 0.1);
-            transform: translateY(-2px);
-        }
-        
-        .archetype-card h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #8b7355;
-            margin-bottom: 16px;
-        }
-        
-        .article-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .article-item {
-            padding: 12px;
-            background: #f5ede3;
-            border-radius: 8px;
-            font-size: 13px;
-            color: #5f5e5a;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .article-item:hover {
-            background: #faeeda;
-            color: #8b7355;
-        }
-        
-        .article-view {
-            max-width: 800px;
-        }
-        
-        .article-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-        
-        .article-back {
-            background: #e0dcd3;
-            color: #2c2c2a;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-        
-        .article-back:hover {
-            background: #d3d1c7;
-        }
-        
-        .article-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #8b7355;
-            margin-bottom: 16px;
-        }
-        
-        .article-intro {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #5f5e5a;
-            margin-bottom: 24px;
-        }
-        
-        .article-placeholder {
-            background: #f5ede3;
-            border-left: 4px solid #ba7517;
-            border-radius: 8px;
-            padding: 20px;
-            font-size: 14px;
-            color: #888780;
-            text-align: center;
-            margin-bottom: 24px;
-        }
-        
         .button-group {
             display: flex;
             gap: 12px;
@@ -498,22 +139,22 @@
         
         .btn {
             padding: 12px 24px;
-            border: none;
             border-radius: 8px;
+            border: none;
             cursor: pointer;
-            font-weight: 600;
             font-size: 14px;
+            font-weight: 600;
             transition: all 0.2s ease;
         }
         
         .btn-primary {
-            background: #8b7355;
-            color: #fff;
+            background: #ba7517;
+            color: white;
         }
         
         .btn-primary:hover {
-            background: #6d5a47;
-            transform: translateY(-1px);
+            background: #9d6512;
+            transform: scale(1.02);
         }
         
         .btn-secondary {
@@ -525,623 +166,368 @@
             background: #d3d1c7;
         }
         
-        .empty-state {
+        .cta-box {
+            background: linear-gradient(135deg, #ba7517 0%, #9d6512 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 30px;
             text-align: center;
-            padding: 40px 20px;
-            color: #888780;
+            margin: 30px 0;
+            box-shadow: 0 6px 16px rgba(186, 117, 23, 0.35);
         }
         
-        @media (max-width: 600px) {
-            .content { padding: 20px; }
-            .header { padding: 30px 20px; }
-            .header h1 { font-size: 22px; }
-            .tabs { flex-wrap: wrap; }
-            .button-group { flex-direction: column; }
-            .btn { width: 100%; }
-            .library-grid { grid-template-columns: 1fr; }
+        .cta-box h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .cta-box p {
+            font-size: 14px;
+            margin-bottom: 10px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .cta-button {
+            background: white;
+            color: #ba7517;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .result-light {
+            background: #fff9f0;
+            border: 3px solid #ba7517;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .result-light h2 {
+            font-size: 24px;
+            color: #8b7355;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .result-light .profile-name {
+            font-size: 18px;
+            color: #ba7517;
+            font-weight: 600;
+            margin: 12px 0;
+        }
+
+        .result-light .confidence {
+            font-size: 13px;
+            color: #888780;
+            margin: 8px 0;
+            font-style: italic;
+        }
+
+        .lock-box {
+            background: #FCEBEB;
+            border: 3px solid #e24b4a;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .lock-box h3 {
+            color: #a32d2d;
+            margin: 0 0 10px 0;
+            font-size: 16px;
+        }
+
+        .lock-box p {
+            color: #5f5e5a;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 8px 0;
+        }
+
+        .secondary-hook {
+            background: #fff3e0;
+            border-left: 4px solid #ba7517;
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .secondary-hook p {
+            color: #5f5e5a;
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .emotional-context {
+            background: #f5f1e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .emotional-context p {
+            color: #5f5e5a;
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 8px 0;
+        }
+
+        .results-container {
+            background: #fafaf8;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚩 RED FLAG Famille</h1>
-            <p style="font-size: 16px; font-weight: 600; margin: 16px 0;">Tu culpabilises pour tout ?<br>Tu te justifies alors que tu n'as rien fait ?<br>Tu portes des problèmes qui ne sont pas les tiens ?</p>
-            <p style="font-size: 14px; opacity: 0.9; margin-top: 12px;">Découvre le rôle que ta famille t'a fait jouer.</p>
-            <p style="font-size: 12px; opacity: 0.85; margin-top: 12px;"><strong>🆓 Test gratuit</strong> — Profil dominant gratuit. Lecture complète et bibliothèque : 14,90 €/mois, sans engagement.</p>
+            <h1>RED FLAG Famille</h1>
+            <p>Identifie les rôles toxiques de ta famille qui continuent à te jouer</p>
         </div>
         
-        <div class="content">
+        <div class="content results-container">
             <div class="tabs">
-                <button class="tab-button active" onclick="switchTab('assessment')">✓ Test</button>
-                <button class="tab-button" onclick="switchTab('results')">✓ Ton profil</button>
-                <button class="tab-button" onclick="switchTab('library')">✓ Bibliothèque complète</button>
+                <button class="tab-button active" onclick="switchTab('assessment')">Test Gratuit</button>
+                <button class="tab-button" onclick="switchTab('results')">Résultats</button>
             </div>
             
+            <!-- TEST GRATUIT : 4 QUESTIONS ALÉATOIRES PARMI 20 -->
             <div id="assessment" class="tab-content active">
-                <div style="background: #EAF3DE; border: 1px solid #639922; border-radius: 8px; padding: 12px; margin-bottom: 20px; font-size: 13px; color: #3b6d11;">
-                    <strong>✓ Gratuit</strong> — Réponds à toutes les questions pour découvrir ton profil dominant gratuitement. La lecture complète reste réservée aux abonnés.
-                </div>
                 <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
                 </div>
+                
                 <div id="questionsContainer"></div>
-                <div class="button-group" id="assessmentActions">
-                    <button class="btn btn-primary" onclick="calculateResults()" id="submitBtn" style="display: none;">Voir mes résultats</button>
-                    <button class="btn btn-secondary" onclick="clearAssessment()" id="clearBtn">Effacer mes réponses</button>
+                
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="submitAssessment()">Voir mon profil</button>
+                    <button class="btn btn-secondary" onclick="resetAssessment()">Effacer</button>
                 </div>
             </div>
             
+            <!-- RÉSULTATS -->
             <div id="results" class="tab-content">
-                <div id="resultsContainer" class="empty-state">
-                    <p>Complète l'évaluation pour voir tes résultats.</p>
-                </div>
-                <div class="button-group" style="margin-top: 20px;">
-                    <button class="btn btn-secondary" onclick="switchTab('library')">
-                        Continuer ma découverte
-                    </button>
-                </div>
-            </div>
-            
-            <div id="library" class="tab-content">
-                <div id="libraryView"></div>
-                <div id="articleView" style="display: none;" class="article-view"></div>
+                <div id="resultsContainer"></div>
             </div>
         </div>
     </div>
-    
-    <!-- Modal Premium -->
-    <div id="premiumModal" class="modal-overlay">
-        <div class="modal-content">
-            <h3>Tu viens peut-être de mettre des mots sur quelque chose que tu portes depuis des années</h3>
-            <p>Cette partie de toi que tu viens de reconnaître ? Elle a une histoire. Et comprendre cette histoire peut tout changer.</p>
-            
-            <div class="modal-checklist">
-                <strong>Accès immédiat :</strong>
-                <ul>
-                    <li>✓ Comprendre pourquoi tu te sens responsable de tout</li>
-                    <li>✓ Arrêter de croire que tout est de ta faute</li>
-                    <li>✓ Découvrir les rôles qu'on t'a donnés sans te demander ton avis</li>
-                    <li>✓ Comprendre pourquoi tu reproduis toujours les mêmes schémas<br><span style="font-size: 12px; color: #8b7355; font-style: italic;">Parce qu'on ne répète pas ce qu'on comprend. On répète surtout ce qu'on n'a jamais vu.</span></li>
-                    <li>✓ Accéder au guide actuel et aux mises à jour régulières</li>
-                </ul>
-            </div>
-            
-            <div style="background: #fffaf2; border: 1px solid #e0dcd3; border-radius: 8px; padding: 12px; margin: 16px 0; font-size: 12px; color: #5f5e5a; line-height: 1.6;">
-                <strong style="color: #8b7355;">📚 Guide actuel + mises à jour régulières</strong><br>
-                Bibliothèque enrichie régulièrement<br>
-                Accès illimité
-            </div>
-            
-            <p><strong>14,90 € / mois</strong><br><span style="font-size: 12px; color: #888780;">Sans engagement</span><br><span style="font-size: 11px; color: #8b7355;">Annule quand tu veux. Accès immédiat.</span></p>
-            
-            <p style="font-size: 13px; color: #8b7355; line-height: 1.7; margin: 16px 0;">Tu peux continuer à faire comme avant. Ou enfin comprendre pourquoi certaines choses reviennent toujours dans ta vie.</p>
-            
-            <div class="modal-cta">
-                <a href="https://payhip.com/b/9zOuQ" target="_blank" class="modal-unlock">Débloquer la bibliothèque</a>
-                <button class="modal-close" onclick="closePremiumModal()">Fermer</button>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        // ===== FINGERPRINT NAVIGATEUR - BLOCAGE MULTI-TESTS =====
-        function generateBrowserFingerprint() {
-            // Combiner plusieurs caractéristiques du navigateur
-            const fingerprint = {
-                userAgent: navigator.userAgent,
-                language: navigator.language,
-                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                screenResolution: screen.width + 'x' + screen.height,
-                hardwareConcurrency: navigator.hardwareConcurrency || 'unknown',
-                deviceMemory: navigator.deviceMemory || 'unknown'
-            };
-            
-            // Créer un hash unique
-            const fingerprintStr = JSON.stringify(fingerprint);
-            let hash = 0;
-            for (let i = 0; i < fingerprintStr.length; i++) {
-                const char = fingerprintStr.charCodeAt(i);
-                hash = ((hash << 5) - hash) + char;
-                hash = hash & hash; // Convertir en entier 32-bit
-            }
-            return 'fp_' + Math.abs(hash).toString(36);
-        }
-        
-        const browserFingerprint = generateBrowserFingerprint();
-        const testCompletedKey = 'redFlagFamilleTestCompleted_' + browserFingerprint;
-        
-        // ===== FIN FINGERPRINT =====
-        
-        const questions = [
-            {category: 'Manipulation parentale', id: 'manipulation', questions: [{text: "Un parent utilise mes secrets ou vulnérabilités contre moi lors de conflits", weight: 3}, {text: "Un parent me dit que je suis 'la seule qui comprenne' ou 'la seule en qui il peut compter'", weight: 3}, {text: "Un parent me reproche de ressembler à l'autre parent ou utilise mes proches pour me contrôler", weight: 2}, {text: "Je me sens obligée de répondre très rapidement à ses appels, visites ou messages, sinon il s'énerve", weight: 2}, {text: "Un parent dit que je suis 'égoïste' ou 'ingrate' quand je mets des limites", weight: 2}]},
-            {category: 'Parentification et rôle inversé', id: 'parentification', questions: [{text: "J'ai été l'oreille émotionnelle d'un parent quand j'étais enfant ou adolescente", weight: 3}, {text: "J'ai appris à nier mes besoins pour calmer un parent ou le protéger", weight: 3}, {text: "Un parent me confie ses peines amoureuses ou professionnelles comme à une amie", weight: 2}, {text: "Je me sens responsable des émotions d'un parent encore aujourd'hui", weight: 2}, {text: "Je n'ose pas dire non à un parent sans me sentir immédiatement coupable", weight: 2}]},
-            {category: 'Favoritisme familial', id: 'favoritisme', questions: [{text: "Je me sens moins aimée que ma fratrie, ou c'est l'inverse et j'en culpabilise", weight: 3}, {text: "Un parent compare mon succès, mon apparence ou ma personnalité à celle de mes frères et sœurs", weight: 2}, {text: "Ma fratrie me tient responsable de ce qu'un parent a donné à l'autre", weight: 2}, {text: "J'ai une relation très proche avec un parent et distante avec l'autre", weight: 2}, {text: "Le préféré d'un parent change selon son humeur, ce qui me déstabilise", weight: 1}]},
-            {category: 'Culpabilité familiale', id: 'culpabilite', questions: [{text: "Je porte la souffrance d'un parent sans qu'il l'ait explicitement demandé", weight: 3}, {text: "Je me sens coupable de mon bien-être ou de mes succès face aux difficultés d'un parent", weight: 3}, {text: "Un parent utilise des phrases comme 'Après tout ce que j'ai fait pour toi' ou 'je me suis sacrifiée'", weight: 2}, {text: "Je rembourse émotionnellement une dette familiale que je n'ai pas créée", weight: 2}, {text: "La culpabilité m'empêche de prendre mes propres décisions", weight: 2}]},
-            {category: 'Fratrie et alliances toxiques', id: 'fratrie', questions: [{text: "Ma fratrie me blâme pour ma relation avec un parent ou me juge de ne pas assez faire pour lui", weight: 2}, {text: "J'ai dû jouer le rôle de parent auprès de mes frères et sœurs plus jeunes", weight: 2}, {text: "Ma fratrie rivalise avec moi pour l'attention ou l'affection d'un parent", weight: 2}, {text: "Je ne peux pas parler librement à ma fratrie de ce qui se passe vraiment en famille", weight: 1}, {text: "Un enfant est clairement préféré et cela crée une compétition entre nous", weight: 2}]}
-        ];
 
-        /*
-        RED FLAG FAMILLE — BIBLIOTHÈQUE TEASER
-        Les textes complets ne sont pas stockés dans ce fichier.
-        Le HTML affiche uniquement les archétypes, les titres, les introductions et les appels premium.
-        Le contenu complet est livré séparément via Payhip.
-        */
-        const archetypes = {
-            'enfant_parent': {
-                name: 'L\'enfant parent',
-                articles: [
-                    {title: 'Pourquoi tu culpabilises autant', intro: 'Tu as grandi en pensant que tes besoins étaient une forme d\'égoïsme. Chaque fois que tu penses à toi, une petite voix te dit que tu devrais penser aux autres d\'abord. Cette culpabilité n\'a pas commencé avec toi. Elle a commencé quand on t\'a donné l\'impression que ton rôle était de prendre soin, pas d\'être prise soin.'}
-                ]
+    <script>
+        // ===== CONFIGURATION =====
+        const testCompletedKey = 'redFlagFamilleTestCompleted';
+        
+        // 20 questions comportementales (5 par catégorie)
+        const allQuestions = {
+            parentification: [
+                { text: "Tu t'excuses même quand tu n'as rien fait.", value: 5 },
+                { text: "Ton premier réflexe quand quelqu'un souffre c'est de le réconforter, même au détriment de toi.", value: 5 },
+                { text: "Tu sais mieux écouter qu'être écoutée.", value: 4 },
+                { text: "Tu culpabilises quand tu dis non, même pour des choses raisonnables.", value: 4 },
+                { text: "Tu continues à prendre soin d'une personne de ta famille qui ne te l'a jamais demandé.", value: 5 }
+            ],
+            manipulation: [
+                { text: "Tu réfléchis longtemps avant d'oser dire non.", value: 5 },
+                { text: "Tu révises tes opinions pour éviter une tension.", value: 5 },
+                { text: "Quand quelqu'un est fâché contre toi, tu cherches d'abord ce que TU as fait de mal.", value: 4 },
+                { text: "Tu parles moins quand tu sens une critique potentielle.", value: 4 },
+                { text: "Tu vérifies souvent l'humeur des gens autour de toi pour adapter ton comportement.", value: 5 }
+            ],
+            culpabilite: [
+                { text: "Tu culpabilises quand tu penses à toi.", value: 5 },
+                { text: "Tu repousses ce que TU veux vraiment.", value: 4 },
+                { text: "Tu crois que quelque chose de mauvais arrivera si tu fais trop attention à tes propres besoins.", value: 5 },
+                { text: "Quand tu réussis quelque chose, tu penses à qui ça aurait pu être mieux pour.", value: 4 },
+                { text: "Tu laisses souvent tes envies pour ne pas faire souffrir quelqu'un d'autre.", value: 5 }
+            ],
+            favoritisme: [
+                { text: "Tu te compares souvent à un frère ou une sœur.", value: 5 },
+                { text: "Tu as l'impression que tu dois toujours en faire plus pour être acceptée.", value: 5 },
+                { text: "Quelqu'un dans ta fratrie était clairement préféré, et ça t'a marquée.", value: 5 },
+                { text: "Tu cherches encore à prouver ta valeur.", value: 4 },
+                { text: "Tu doutes que tu sois réellement appréciée pour qui tu es.", value: 4 }
+            ]
+        };
+
+        // Profils
+        const profiles = {
+            parentification: {
+                name: "L'Enfant Parent",
+                description: "Tu as grandi en t'occupant des autres. Aujourd'hui tu attires encore ceux qui prennent."
             },
-            'enfant_sauveur': {
-                name: 'L\'enfant sauveur',
-                articles: [
-                    {title: 'Pourquoi tu anticipes tout', intro: 'Ton cerveau fonctionne en mode alerte permanente. Tu lis entre les lignes, tu devines les colères avant qu\'elles arrivent, tu arranges les choses avant qu\'elles explosent. Ce radar émotionnel t\'a probablement sauvée enfant. Aujourd\'hui, il te tue.'}
-                ]
+            manipulation: {
+                name: "La Victime Silencieuse",
+                description: "Tu as appris à te taire. Aujourd'hui tu doutes de ton droit à la parole."
             },
-            'enfant_oublie': {
-                name: 'L\'enfant oublié',
-                articles: [
-                    {title: 'Pourquoi tu as du mal à recevoir', intro: 'Les compliments te mettent mal à l\'aise. L\'amour aussi. L\'attention, la générosité, l\'aide, tout ça semble destiné à quelqu\'un d\'autre. Pas à toi. Tu es habituée à te débrouiller seule. Recevoir, c\'est baisser ta garde. Et tu n\'as jamais appris à faire ça.'}
-                ]
+            culpabilite: {
+                name: "La Responsable de Tout",
+                description: "Tu portes le poids invisible de ta famille. Aujourd'hui tu culpabilises juste d'exister."
             },
-            'bouc_emissaire': {
-                name: 'Le bouc émissaire',
-                articles: [
-                    {title: 'Pourquoi tu te justifies sans arrêt', intro: 'Tu as appris à te défendre avant même qu\'on t\'accuse. Parce qu\'on t\'a tellement blâmée qu\'il te semble normal d\'être suspecte. Tu expliques, tu justifies, tu t\'excuses même quand tu n\'as rien fait. Parce que tu préfères te battre que de te sentir impuissante.'}
-                ]
-            },
-            'enfant_invisible': {
-                name: 'L\'enfant invisible',
-                articles: [
-                    {title: 'Pourquoi tu te débrouilles toujours seule', intro: 'Tu as appris très tôt qu\'il ne fallait compter que sur toi. Peut-être qu\'on était absent, peut-être qu\'on était trop occupé, peut-être qu\'on ne remarquait pas. Alors tu as appris à survivre seule. Et maintenant, même quand on te propose de l\'aide, tu ne sais pas comment l\'accepter.'}
-                ]
-            },
-            'enfant_prefere': {
-                name: 'L\'enfant préféré',
-                articles: [
-                    {title: 'Pourquoi tu culpabilises autant', intro: 'Être préférée a un prix. Tu sens la tension dans la fratrie. Tu vois le regard des autres enfants. Et tu te sens coupable d\'avoir reçu ce qu\'ils n\'ont pas. Cette culpabilité, tu la portes. Elle est devenue une partie de qui tu es.'}
-                ]
-            },
-            'enfant_mediateur': {
-                name: 'L\'enfant médiateur',
-                articles: [
-                    {title: 'Pourquoi tu veux toujours réparer les autres', intro: 'Tu as été habituée à calmer les tempêtes. À lire les silences, à arranger les conflits avant qu\'ils ne deviennent des catastrophes. C\'était ton rôle. Et maintenant, même à l\'âge adulte, tu fais ça automatiquement. Sans qu\'on te le demande.'}
-                ]
+            favoritisme: {
+                name: "Celle Qui N'Était Jamais Assez",
+                description: "Tu n'étais pas la préférée. Aujourd'hui tu crois devoir mériter ta place."
             }
         };
 
         let answers = {};
-        let currentArchetype = null;
-        
-        
-        function initializeQuestions() {
-            const stored = localStorage.getItem('redFlagFamilleAnswers');
-            answers = stored ? JSON.parse(stored) : {};
-            renderLibrary();
+        let selectedQuestions = [];
 
-            // Vérifier si le test a déjà été complété (avec fingerprint navigateur)
-            const testCompleted = localStorage.getItem(testCompletedKey);
-
-            if (testCompleted === 'true') {
-                const totalQuestions = questions.reduce((sum, s) => sum + s.questions.length, 0);
-                const validQuestionIds = questions.flatMap(section => section.questions.map((_, idx) => `${section.id}_${idx}`));
-                const answered = validQuestionIds.filter(qId => Object.prototype.hasOwnProperty.call(answers, qId)).length;
-
-                // Si les réponses sont encore présentes, on restaure directement les résultats.
-                if (answered === totalQuestions) {
-                    calculateResults();
-                    return;
-                }
-
-                // Si les réponses ont été supprimées dans le navigateur, on bloque quand même le nouveau test.
-                const container = document.getElementById('questionsContainer');
-                container.innerHTML = `
-                    <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 24px; text-align: center; margin: 20px 0;">
-                        <h3 style="color: #856404; margin-bottom: 12px; font-size: 18px; font-weight: 600;">Test déjà complété</h3>
-                        <p style="color: #856404; font-size: 14px; margin-bottom: 16px;">
-                            <strong>Un seul test gratuit par appareil.</strong>
-                        </p>
-                        <p style="color: #856404; font-size: 13px; line-height: 1.6;">
-                            Le test gratuit a déjà été utilisé sur ce navigateur. Pour approfondir, accède à RED FLAG Famille Premium.
-                        </p>
-                        <button class="btn btn-primary" onclick="switchTab('library')" style="margin-top: 16px;">
-                            Voir la bibliothèque
-                        </button>
-                    </div>
-                `;
-
-                const clearBtn = document.getElementById('clearBtn');
-                if (clearBtn) {
-                    clearBtn.disabled = true;
-                    clearBtn.style.opacity = '0.5';
-                    clearBtn.style.cursor = 'not-allowed';
-                }
-
-                switchTab('assessment');
-                return;
+        function shuffleArray(array) {
+            let arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
             }
+            return arr;
+        }
 
+        function initializeQuestions() {
+            // Tirer 4 questions aléatoires (une par catégorie)
+            selectedQuestions = [];
+            Object.keys(allQuestions).forEach(category => {
+                const questionsInCategory = allQuestions[category];
+                const randomQuestion = questionsInCategory[Math.floor(Math.random() * questionsInCategory.length)];
+                selectedQuestions.push({
+                    category: category,
+                    text: randomQuestion.text,
+                    value: randomQuestion.value
+                });
+            });
+            
             renderQuestions();
         }
 
         function renderQuestions() {
-            const container = document.getElementById('questionsContainer');
             let html = '';
-            questions.forEach(section => {
-                html += `<h3 style="margin-top: 30px; margin-bottom: 16px; font-size: 16px; font-weight: 600; color: #8b7355; border-left: 4px solid #ba7517; padding-left: 12px;">${section.category}</h3>`;
-                section.questions.forEach((q, idx) => {
-                    const qId = `${section.id}_${idx}`;
-                    const selected = Object.prototype.hasOwnProperty.call(answers, qId) ? answers[qId] : null;
-                    html += `<div class="question-group"><div class="question-title"><span style="color: #ba7517; font-weight: 700;">•</span>${q.text}</div><div class="options">
-                        <button class="option-btn ${selected === 0 ? 'selected' : ''}" onclick="setAnswer('${qId}', 0)">Pas du tout</button>
-                        <button class="option-btn ${selected === 1 ? 'selected' : ''}" onclick="setAnswer('${qId}', 1)">Un peu</button>
-                        <button class="option-btn ${selected === 2 ? 'selected' : ''}" onclick="setAnswer('${qId}', 2)">Souvent</button>
-                        <button class="option-btn ${selected === 3 ? 'selected' : ''}" onclick="setAnswer('${qId}', 3)">Tout à fait</button>
-                    </div></div>`;
-                });
+            selectedQuestions.forEach((q, index) => {
+                html += `
+                    <div class="question-group">
+                        <div class="question-title">
+                            ${index + 1}. ${q.text}
+                        </div>
+                        <div class="options">
+                            <button class="option-btn ${answers[q.category] === 'oui' ? 'selected' : ''}" 
+                                    onclick="answerQuestion('${q.category}', 'oui')">Oui</button>
+                            <button class="option-btn ${answers[q.category] === 'non' ? 'selected' : ''}" 
+                                    onclick="answerQuestion('${q.category}', 'non')">Non</button>
+                            <button class="option-btn ${answers[q.category] === 'parfois' ? 'selected' : ''}" 
+                                    onclick="answerQuestion('${q.category}', 'parfois')">Parfois</button>
+                        </div>
+                    </div>
+                `;
             });
-            container.innerHTML = html;
+            document.getElementById('questionsContainer').innerHTML = html;
             updateProgress();
         }
-        
-        function setAnswer(qId, value) {
-            answers[qId] = value;
+
+        function answerQuestion(category, answer) {
+            answers[category] = answer;
             localStorage.setItem('redFlagFamilleAnswers', JSON.stringify(answers));
             renderQuestions();
         }
-        
+
         function updateProgress() {
-            const totalQuestions = questions.reduce((sum, s) => sum + s.questions.length, 0);
-            const validQuestionIds = questions.flatMap(section => section.questions.map((_, idx) => `${section.id}_${idx}`));
-            const answered = validQuestionIds.filter(qId => Object.prototype.hasOwnProperty.call(answers, qId)).length;
-            const percent = (answered / totalQuestions) * 100;
+            const totalQ = 4;
+            const answered = Object.keys(answers).length;
+            const percent = (answered / totalQ) * 100;
             document.getElementById('progressFill').style.width = percent + '%';
-            const submitBtn = document.getElementById('submitBtn');
-            if (submitBtn) {
-                submitBtn.style.display = answered === totalQuestions ? 'inline-block' : 'none';
-            }
-        }
-        
-        function calculateScores() {
-            const scores = {};
-            questions.forEach(section => {
-                let sectionScore = 0, maxScore = 0;
-                section.questions.forEach((q, idx) => {
-                    const qId = `${section.id}_${idx}`;
-                    const answer = Object.prototype.hasOwnProperty.call(answers, qId) ? answers[qId] : 0;
-                    sectionScore += (answer * q.weight);
-                    maxScore += (3 * q.weight);
-                });
-                scores[section.id] = {raw: sectionScore, max: maxScore, percent: Math.round((sectionScore / maxScore) * 100)};
-            });
-            return scores;
-        }
-        
-        function getScoreColor(percent) {
-            if (percent < 20) return {bg: '#EAF3DE', border: '#639922', fill: '#639922', text: '#3b6d11'};
-            if (percent < 40) return {bg: '#FAEEDA', border: '#ba7517', fill: '#ba7517', text: '#854f0b'};
-            if (percent < 60) return {bg: '#FAECE7', border: '#993c1d', fill: '#993c1d', text: '#712b13'};
-            return {bg: '#FCEBEB', border: '#e24b4a', fill: '#e24b4a', text: '#a32d2d'};
-        }
-        
-        function getProfileName(category, percent) {
-            const profiles = {
-                'manipulation': {low: 'Relation plutôt stable', med: 'Signes de manipulation', high: 'Manipulation importante'},
-                'parentification': {low: 'Limites claires', med: 'Rôles inversés légers', high: 'Inversion de rôle majeure'},
-                'favoritisme': {low: 'Équité perçue', med: 'Comparaisons fréquentes', high: 'Favoritisme destructeur'},
-                'culpabilite': {low: 'Autonomie émotionnelle', med: 'Culpabilité modérée', high: 'Culpabilité transgénérationnelle'},
-                'fratrie': {low: 'Fratrie plutôt soutenante', med: 'Tensions modérées', high: 'Alliance familiale douloureuse'}
-            };
-            let level = 'low';
-            if (percent >= 60) level = 'high';
-            else if (percent >= 35) level = 'med';
-            return profiles[category][level];
-        }
-        
-        function getArchetype(scores) {
-            const manipulation = scores.manipulation.percent;
-            const parentification = scores.parentification.percent;
-            const favoritisme = scores.favoritisme.percent;
-            const culpabilite = scores.culpabilite.percent;
-            const fratrie = scores.fratrie.percent;
-            
-            if (parentification >= 60 && culpabilite >= 60) return {key: 'enfant_parent', name: archetypes.enfant_parent.name, desc: "Tu as appris à prendre soin des autres avant de t'occuper de toi. Dès l'enfance, tu as porté le poids émotionnel d'un parent. Tu es celle qui écoute, qui console, qui arrange. Aujourd'hui encore, tu culpabilises d'avoir besoin de quelque chose pour toi. Ce rôle a peut-être été utile pour survivre, mais il t'épuise."};
-            if (parentification >= 60) return {key: 'enfant_sauveur', name: archetypes.enfant_sauveur.name, desc: "Tu as développé des réflexes d'hyper-vigilance. Tu lis dans les silences, tu anticipes les colères, tu mets tes propres besoins de côté pour éviter une catastrophe. Tu es devenue experte à 'arranger les choses'. Mais cette expertise te coûte beaucoup d'énergie. Personne ne t'a jamais demandé si tu allais bien."};
-            if (culpabilite >= 65) return {key: 'enfant_oublie', name: archetypes.enfant_oublie.name, desc: "Tu portes la culpabilité d'exister. Peut-être qu'un parent a souffert et tu as appris que ta joie était une forme d'ingratitude. Peut-être que tes besoins ont toujours été secondaires. Tu t'es fait petite. Et maintenant, tu culpabilises de demander, de prendre, d'être heureuse. Ce que tu ressens aujourd'hui : c'est de l'héritage."};
-            if (manipulation >= 60 && fratrie >= 60) return {key: 'bouc_emissaire', name: archetypes.bouc_emissaire.name, desc: "Tu as reçu une part disproportionnée de blâme et de critique. Peut-être qu'un parent avait besoin d'un ennemi interne. Peut-être que la fratrie t'a mise en porte-à-faux. Tu portes les tensions de la famille comme si elles étaient ta faute. Tu expliques, tu justifies, tu t'excuses. Mais rien n'y fait jamais."};
-            if (favoritisme >= 60 && fratrie >= 50) return {key: 'enfant_prefere', name: archetypes.enfant_prefere.name, desc: "Tu as grandi dans la comparaison. Soit tu étais la préférée et tu portes le poids de la culpabilité. Soit tu ne l'étais pas et tu as appris que tu n'étais jamais assez. Dans les deux cas, cette dynamique a fragmenté ta fratrie. Personne ne s'en est sorti indemne. Pas même toi."};
-            if (favoritisme >= 50) return {key: 'enfant_invisible', name: archetypes.enfant_invisible.name, desc: "Tu t'es fait petite pour ne pas prendre de place. Peut-être qu'on t'oubliait. Peut-être que tu n'avais pas d'importance. Tu as appris à être autonome très tôt, à ne pas demander, à te débrouiller seule. Même maintenant, tu as du mal à croire que quelqu'un pourrait te voir vraiment."};
-            if (fratrie >= 60) return {key: 'enfant_mediateur', name: archetypes.enfant_mediateur.name, desc: "Tu es celle qui essaie de résoudre les conflits, qui joue les intermédiaires, qui cherche des solutions. Tu ne peux pas supporter l'atmosphère lourde. Alors tu travailles sans relâche pour arranger les choses entre les autres. Mais personne n'a jamais pensé à arranger les choses pour toi."};
-            
-            return {key: null, name: "Tu t'es adaptée pour survivre", desc: "Tes dynamiques familiales sont complexes et multi-facettes. Il n'y a pas une seule histoire ici. Ce que tu dois savoir : rien de ce que tu es aujourd'hui n'est de ta faute."};
-        }
-        
-        function getSynthesis(scores) {
-            const avg = Math.round((scores.manipulation.percent + scores.parentification.percent + scores.favoritisme.percent + scores.culpabilite.percent + scores.fratrie.percent) / 5);
-            if (avg < 25) return "Ton test ne montre pas de signaux d'alerte majeurs. Continue à protéger tes limites et à écouter ce qui te fait du bien.";
-            if (avg < 45) return "Ce test montre simplement où les blessures sont les plus sensibles. Tu n'es pas condamnée à reproduire ce que tu as appris.";
-            if (avg < 60) return "Tu as appris à prendre beaucoup de place pour les autres et très peu pour toi. Tu as développé des réflexes de culpabilité et une tendance à t'oublier. Ce fonctionnement a probablement été utile pour survivre dans ton environnement familial, mais il continue aujourd'hui à t'épuiser. Rien de tout cela ne fait de toi quelqu'un d'égoïste ou d'ingrat. Tu as simplement appris à vivre ainsi.";
-            return "Tu portes le poids de dynamiques familiales qui t'ont formée. Ce poids ne t'appartient pas. La première chose à savoir : tu n'as rien fait pour mériter ça. La deuxième chose : tu n'es plus obligée de le porter seule. Ça prendra du temps et du soutien, mais c'est possible.";
-        }
-        
-        function renderLibrary() {
-            let html = '<h2 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; color: #8b7355;">Bibliothèque complète</h2>';
-
-            html += '<div class="library-grid">';
-
-            Object.keys(archetypes).forEach(key => {
-                const archetype = archetypes[key];
-                const article = archetype.articles[0];
-                html += `<div class="archetype-card" onclick="showPremiumMessage()">
-                    <h3>${archetype.name}</h3>
-                    <div class="article-list">
-                        <div class="article-item" style="cursor: pointer;">
-                            📄 ${article.title}
-                        </div>
-                        <p style="font-size: 12px; line-height: 1.6; color: #5f5e5a; margin-top: 8px;">${article.intro}</p>
-                    </div>
-                </div>`;
-            });
-
-            html += '</div>';
-
-            // Offre premium honnête : guide actuel + mises à jour régulières
-            html += `<div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #e0dcd3; text-align: center;">
-                <h3 style="font-size: 16px; font-weight: 600; color: #8b7355; margin-bottom: 12px;">📚 Guide actuel + mises à jour régulières</h3>
-                <p style="font-size: 13px; color: #5f5e5a; line-height: 1.6;">
-                    Accès au guide RED FLAG Famille actuel, puis aux contenus ajoutés au fil des mises à jour.<br>
-                    <strong style="color: #ba7517;">14,90 €/mois — Sans engagement</strong>
-                </p>
-                <a href="https://payhip.com/b/9zOuQ" target="_blank" style="background:#ba7517;color:white;display:inline-block;margin-top:14px;padding:12px 26px;border-radius:8px;text-decoration:none;font-weight:700;">🔓 Débloquer la bibliothèque complète</a>
-                <p style="font-size: 12px; color: #8b7355; line-height: 1.6; margin-top: 12px; font-style: italic;">
-                    <strong>Le plus difficile n'est pas ce que tu as vécu.</strong><br>
-                    Le plus difficile, c'est ce que tu continues à reproduire sans t'en rendre compte.
-                </p>
-            </div>`;
-
-            document.getElementById('libraryView').innerHTML = html;
         }
 
-        function showPremiumMessage() {
-            document.getElementById('premiumModal').classList.add('active');
-        }
-        
-        function closePremiumModal() {
-            document.getElementById('premiumModal').classList.remove('active');
-        }
-        
-        // Fermer le modal en cliquant en dehors
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('premiumModal').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    closePremiumModal();
-                }
-            });
-        });
-        
-        function viewArchetype(key) {
-            currentArchetype = key;
-            let html = `<div style="margin-bottom: 24px;">
-                <button class="article-back" onclick="backToLibrary()">← Retour à la Bibliothèque</button>
-            </div>
-            <h2 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; color: #8b7355;">${archetypes[key].name}</h2>
-            <div class="article-list">`;
-            
-            archetypes[key].articles.forEach((article, idx) => {
-                html += `<div class="article-item" onclick="viewArticle('${key}', ${idx})" style="cursor: pointer; margin-bottom: 12px;">📄 ${article.title}</div>`;
-            });
-            
-            html += '</div>';
-            document.getElementById('libraryView').innerHTML = html;
-        }
-        
-        function viewArticle(archeKey, articleIdx) {
-            const article = archetypes[archeKey].articles[articleIdx];
-            
-            // PAYWALL - NE PAS afficher le contenu complet
-            let html = `<div class="article-header">
-                <button class="article-back" onclick="viewArchetype('${archeKey}')">← Retour</button>
-            </div>
-            <h1 class="article-title">${article.title}</h1>
-            <div class="article-intro">${article.intro}</div>
-            
-            <div style="background: #FFF8E1; border: 2px solid #FFC107; border-radius: 8px; padding: 24px; margin: 30px 0; text-align: center;">
-                <h3 style="color: #856404; margin-bottom: 12px; font-size: 16px; font-weight: 600;">📖 Contenu complet verrouillé</h3>
-                <p style="color: #856404; font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
-                    Cet article complet est disponible dans <strong>RED FLAG Famille Premium</strong>.
-                </p>
-                <p style="color: #856404; font-size: 13px; margin-bottom: 20px;">
-                    Accès au guide actuel + aux nouveaux contenus ajoutés régulièrement.
-                </p>
-                <a href="https://payhip.com/b/9zOuQ" target="_blank" style="background: #ba7517; color: white; display: inline-block; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600;">
-                    Débloquer pour 14,90 €/mois
-                </a>
-                <p style="color: #856404; font-size: 11px; margin-top: 12px;">Sans engagement. Annule quand tu veux.</p>
-            </div>
-            
-            <div class="button-group">
-                <button class="btn btn-secondary" onclick="viewArchetype('${archeKey}')">Retour à ${archetypes[archeKey].name}</button>
-            </div>`;
-            
-            document.getElementById('libraryView').innerHTML = html;
-        }
-        
-        function backToLibrary() {
-            renderLibrary();
-        }
-        
-        function calculateResults() {
-            const totalQuestions = questions.reduce((sum, s) => sum + s.questions.length, 0);
-            const validQuestionIds = questions.flatMap(section => section.questions.map((_, idx) => `${section.id}_${idx}`));
-            const answered = validQuestionIds.filter(qId => Object.prototype.hasOwnProperty.call(answers, qId)).length;
-            if (answered !== totalQuestions) {
-                alert('Réponds à toutes les questions avant de voir tes résultats.');
+        function submitAssessment() {
+            if (Object.keys(answers).length < 4) {
+                alert('Réponds à toutes les questions.');
                 return;
             }
 
-            const scores = calculateScores();
-            const sortedAreas = Object.entries(scores).sort((a, b) => b[1].percent - a[1].percent);
-            const criticalAreas = sortedAreas.filter(([_, s]) => s.percent >= 50);
-            const mainArea = sortedAreas[0];
-            const secondArea = sortedAreas[1];
-            const archetype = getArchetype(scores);
-            const synthesis = getSynthesis(scores);
-
-            const categoryLabels = {
-                manipulation: 'Manipulation parentale',
-                parentification: 'Parentification et rôle inversé',
-                favoritisme: 'Favoritisme familial',
-                culpabilite: 'Culpabilité familiale',
-                fratrie: 'Fratrie et alliances toxiques'
-            };
-
-            const mainReading = {
-                manipulation: "Ton résultat principal montre une forte sensibilité aux mécanismes de contrôle, de reproche ou de pression familiale. Quand cette zone monte, ce n'est pas juste une histoire de caractère. C'est souvent le signe que tu as appris à surveiller ce que tu dis, ce que tu fais, et jusqu'où tu peux exister sans déclencher une réaction.",
-                parentification: "Ton résultat principal montre que tu as probablement pris une place trop grande dans la gestion émotionnelle des autres. Tu as pu devenir celle qui écoute, qui comprend, qui calme, qui prévoit. Le problème, c'est que ce rôle finit par te voler ton repos et ton droit d'être simplement toi.",
-                favoritisme: "Ton résultat principal pointe la comparaison, la place dans la fratrie ou la sensation de ne jamais recevoir exactement la même chose que les autres. Quand cette zone ressort, ce n'est pas une jalousie idiote. C'est souvent une vieille impression d'injustice, de compétition ou de place à mériter.",
-                culpabilite: "Ton résultat principal montre que la culpabilité familiale pèse lourd. Tu peux avoir l'impression de devoir rembourser, réparer, compenser ou ne pas trop être heureuse. Cette culpabilité n'est pas une preuve d'amour. C'est souvent une dette émotionnelle qu'on t'a laissée dans les bras sans te demander ton avis.",
-                fratrie: "Ton résultat principal montre que la fratrie ou les alliances familiales ont laissé une trace. Rivalités, comparaison, rôle imposé, conflits silencieux, place mal distribuée. Cette zone parle rarement d'un seul événement. Elle parle d'une ambiance familiale qui a organisé les places sans demander l'accord de personne."
-            };
-
-            let html = '<h2 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; color: #8b7355;">Tes résultats</h2>';
-
-            html += `<div class="archetype-box" style="text-align:left;">
-                <div class="archetype-title" style="text-align:center;">Ton rôle dominant : ${archetype.name}</div>
-                <div class="archetype-description" style="text-align:center; margin-bottom:18px;">${archetype.desc}</div>
-                
-                <div style="background: #fffaf2; border: 1px solid #e0dcd3; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
-                    <p style="color: #8b7355; font-size: 13px; font-weight: 600; margin: 0 0 12px 0;">Ce profil explique peut-être pourquoi :</p>
-                    <ul style="color: #5f5e5a; font-size: 13px; line-height: 1.8; margin: 0 0 12px 0; padding-left: 20px;">
-                        <li>✓ tu culpabilises dès que tu penses à toi</li>
-                        <li>✓ tu as du mal à demander de l'aide</li>
-                        <li>✓ tu donnes plus que tu ne reçois</li>
-                        <li>✓ tu t'épuises dans certaines relations</li>
-                        <li>✓ tu as l'impression d'être responsable du bonheur des autres</li>
-                    </ul>
-                    <p style="color: #5f5e5a; font-size: 12px; line-height: 1.6; margin: 0; font-style: italic;"><strong>Mais ce profil n'est peut-être qu'une partie de ton histoire.</strong> La bibliothèque complète permet d'aller beaucoup plus loin.</p>
-                </div>
-                
-                <div style="background:#fffaf2; border:1px solid #e0dcd3; border-radius:10px; padding:16px; color:#5f5e5a; font-size:14px; line-height:1.7;">
-                    <strong style="color:#8b7355;">Ce que ton test indique clairement :</strong><br>
-                    ${mainReading[mainArea[0]]}
-                </div>
-            </div>`;
-            
-            // Introduction au coup de poignard
-            html += `<div style="background: #fff9f0; border-left: 4px solid #ba7517; padding: 16px; margin: 24px 0; border-radius: 6px;">
-                <p style="color: #5f5e5a; font-size: 14px; line-height: 1.8; margin: 0;"><strong style="color: #8b7355;">Mais ce profil n'est probablement qu'une partie de ton histoire.</strong><br>
-                Les enfants parents développent souvent :</p>
-                <ul style="color: #5f5e5a; font-size: 13px; line-height: 1.8; margin: 12px 0 0 20px; padding: 0;">
-                    <li>une culpabilité permanente</li>
-                    <li>la peur de décevoir</li>
-                    <li>la difficulté à demander de l'aide</li>
-                    <li>des relations où ils donnent plus qu'ils ne reçoivent</li>
-                    <li>l'impression d'être responsable du bonheur des autres</li>
-                </ul>
-                <p style="color: #5f5e5a; font-size: 13px; line-height: 1.8; margin: 12px 0 0 0;"><strong style="color: #8b7355;">La bibliothèque complète permet d'aller plus loin.</strong></p>
-            </div>`;
-            
-            // Électrochoc IMMÉDIAT : "Tu risques aussi…"
-            html += `<div style="background: #FCEBEB; border: 3px solid #e24b4a; padding: 20px; margin: 30px 0; border-radius: 8px;">
-                <h3 style="color: #a32d2d; margin-top: 0; font-size: 16px;">⚠️ Quand on continue comme ça…</h3>`;
-            
-            const risks = {
-                'parentification': '• de culpabiliser quand tu penses à toi<br>• d\'attirer des gens qui prennent beaucoup<br>• de finir épuisée sans comprendre pourquoi<br>• d\'avoir du mal à recevoir',
-                'manipulation': '• de croire que tu dois gagner l\'amour par la soumission<br>• de te taire même quand c\'est injuste<br>• d\'oublier ce que TU veux vraiment<br>• d\'accepter des traitements inacceptables',
-                'culpabilite': '• de reporter tes propres rêves<br>• de sacrifier ton bien-être pour celui des autres<br>• de croire que tu dois rembourser une dette invisible<br>• de refuser la réussite ou le bonheur',
-                'favoritisme': '• de te comparer constamment<br>• de ne jamais te sentir assez<br>• d\'entrer en compétition même quand ce n\'est pas nécessaire<br>• de douter de ta légitimité',
-                'fratrie': '• d\'être prise dans des alliances toxiques<br>• de reproduire les mêmes conflits à l\'âge adulte<br>• de ne pas savoir où tu te places vraiment<br>• de trahir ta propre intégrité pour la paix'
-            };
-            
-            html += `<p style="color: #5f5e5a; font-size: 14px; line-height: 1.8; margin: 12px 0;">${risks[mainArea[0]] || risks['parentification']}</p>
-                <p style="font-size: 13px; color: #8b7355; margin-top: 12px; font-weight: 600;">👉 <strong>Mais tu pourrais aussi avoir un profil secondaire.</strong> Certains rôles se cachent les uns les autres. L'enfant parent peut aussi être invisible. Le bouc émissaire peut aussi être médiateur.</p>
-                <p style="font-size: 13px; color: #8b7355; margin-top: 12px; font-weight: 600;">🔒 Découvre tes rôles secondaires dans la bibliothèque complète.</p>
-            </div>`;
-            
-            html += `<div class="synthesis-box"><strong>Lecture globale :</strong><br>${synthesis}</div>`;
-
-            html += `<h3 style="font-size: 16px; font-weight: 600; margin: 30px 0 16px; color: #8b7355;">Tes deux zones les plus marquées</h3>
-                <div class="profile-badge"><strong>1. ${categoryLabels[mainArea[0]]} — ${mainArea[1].percent}%</strong>${getProfileName(mainArea[0], mainArea[1].percent)}</div>
-                <div class="profile-badge"><strong>2. ${categoryLabels[secondArea[0]]} — ${secondArea[1].percent}%</strong>${getProfileName(secondArea[0], secondArea[1].percent)}</div>`;
-
-            html += `<div style="background:#fff8e1; border:2px solid #ffc107; border-radius:10px; padding:20px; margin:30px 0; text-align:center;">
-                <h3 style="color:#856404; margin:0 0 10px 0; font-size:16px;">🔒 Scores détaillés verrouillés</h3>
-                <p style="color:#856404; font-size:13px; line-height:1.7; margin:0 0 14px 0;">
-                    Le gratuit te donne ton rôle dominant et tes deux zones principales. Le détail complet, les rôles secondaires et la lecture approfondie sont réservés à la version complète.
-                </p>
-                <a href="https://payhip.com/b/9zOuQ" target="_blank" style="background:#ba7517;color:white;display:inline-block;padding:11px 24px;border-radius:8px;text-decoration:none;font-weight:700;">Débloquer les scores complets</a>
-            </div>`;
-
-            if (criticalAreas.length > 0) {
-                html += '<h3 style="font-size: 16px; font-weight: 600; margin: 30px 0 16px; color: #8b7355;">🚩 Points à regarder en priorité</h3>';
-                const recommendations = {
-                    'manipulation': 'Certaines attitudes semblent t\'avoir habituée à culpabiliser ou à te taire. Il est temps de remettre une limite là où tu n\'en avais plus.',
-                    'parentification': 'Tu as peut-être appris très tôt à t\'occuper des autres avant de t\'occuper de toi. Ce rôle continue parfois à l\'âge adulte.',
-                    'favoritisme': 'Grandir dans les comparaisons laisse souvent l\'impression de ne jamais être assez. Ce n\'est pas à toi de gagner une place qui aurait dû être donnée naturellement.',
-                    'culpabilite': 'Tu portes peut-être des responsabilités qui ne devraient pas reposer sur toi.',
-                    'fratrie': 'La fratrie semble prise dans des tensions ou des alliances qui empêchent une relation simple et saine.'
-                };
-                criticalAreas.forEach(([category, score]) => {
-                    html += `<div class="profile-badge"><strong>⚠️ ${categoryLabels[category]}</strong>${recommendations[category]}</div>`;
-                });
-            } else {
-                html += `<div class="profile-badge"><strong>Résultat global apaisé</strong>Aucune zone ne dépasse 50 %. Cela ne veut pas dire que tout est parfait. Cela veut dire que le test ne montre pas de signal familial dominant très marqué aujourd'hui.</div>`;
+            if (localStorage.getItem(testCompletedKey) === 'true') {
+                alert('Le test gratuit a déjà été complété sur ce navigateur.');
+                switchTab('results');
+                return;
             }
 
-            html += `<div style="background:#fffaf2; border:2px solid #ba7517; border-radius:10px; padding:20px; margin:30px 0; text-align:center;">
-                        <h3 style="color:#8b7355; margin:0 0 12px 0; font-size:18px;">🔒 La suite est volontairement verrouillée</h3>
-                        <p style="font-size:14px; color:#5f5e5a; line-height:1.7; margin:0 0 14px 0;">
-                            Le test gratuit t'a montré la porte. Il ne va pas te donner toute la maison, les clés et le canapé. Pour comprendre tes rôles secondaires, les mécanismes cachés et les pistes concrètes de sortie, passe à la version complète.
-                        </p>
-                        <a href="https://payhip.com/b/9zOuQ" target="_blank" style="background:#ba7517;color:white;display:inline-block;padding:12px 26px;border-radius:8px;text-decoration:none;font-weight:700;">🔓 Accéder à la lecture complète</a>
-                    </div>
-
-                    <!-- CTA MASSIF #1 : Après reconnaissance du profil -->
-                    <div style="background: linear-gradient(135deg, #ba7517 0%, #9d6512 100%); color: white; padding: 28px; border-radius: 12px; text-align: center; margin: 32px 0; box-shadow: 0 6px 16px rgba(186, 117, 23, 0.35);">
-                        <h3 style="margin: 0 0 14px 0; font-size: 19px; font-weight: 700; letter-spacing: -0.5px;">Tu veux comprendre le reste ?</h3>
-                        <p style="margin: 0 0 20px 0; font-size: 14px; line-height: 1.7; opacity: 0.95;"><strong>Le test gratuit ne montre que ton rôle dominant.</strong><br>Les rôles cachés influencent encore tes relations aujourd'hui.</p>
-                        <a href="https://payhip.com/b/9zOuQ" target="_blank" style="background: white; color: #ba7517; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-block; font-size: 16px; transition: all 0.2s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.12);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 16px rgba(0,0,0,0.18)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.12)';">🔓 Débloquer la version complète</a>
-                        <p style="margin: 16px 0 0 0; font-size: 12px; opacity: 0.88; letter-spacing: 0.3px;">14,90 €/mois • Sans engagement • Accès instantané</p>
-                    </div>
-                    
-                    <!-- Dernier coup de poignard -->
-                    <div style="background: #FCEBEB; border: 3px solid #e24b4a; padding: 20px; margin: 30px 0; border-radius: 8px;">
-                        <h3 style="color: #a32d2d; margin-top: 0; font-size: 16px;">⚠️ Si rien ne change…</h3>
-                        <p style="color: #5f5e5a; font-size: 14px; line-height: 1.8; margin: 12px 0;">Tu risques simplement de continuer à attirer les mêmes personnes, vivre les mêmes relations et culpabiliser dès que tu penses à toi.</p>
-                        <p style="color: #5f5e5a; font-size: 14px; line-height: 1.8; margin: 12px 0;"><strong>Comprendre son histoire ne répare pas tout, mais ignorer ce qu'on répète permet rarement que ça disparaisse.</strong></p>
-                        <p style="font-size: 13px; color: #8b7355; margin-top: 16px; font-weight: 600;">🔒 <strong>Comprendre ce que je reproduis encore</strong> — Les mécanismes cachés et comment tu peux les changer.</p>
-                    </div>
-                    
-                    <!-- CTA SECONDAIRE #2 : Après l'avertissement -->
-                    <div style="background: rgba(186, 117, 23, 0.08); border: 2px solid #ba7517; padding: 22px; border-radius: 10px; margin: 28px 0; text-align: center;">
-                        <p style="margin: 0 0 16px 0; font-size: 15px; color: #5f5e5a; line-height: 1.6;"><strong>La version complète RED FLAG Famille t'explique tout ça en détail.</strong></p>
-                        <a href="https://payhip.com/b/9zOuQ" target="_blank" style="background: #ba7517; color: white; padding: 11px 26px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; font-size: 14px; transition: all 0.2s ease;" onmouseover="this.style.background='#9d6512';" onmouseout="this.style.background='#ba7517';">Accéder aux contenus complets</a>
-                    </div>
-                    
-                    <div class="cta-box">
-                        <h3>RED FLAG FAMILLE PREMIUM</h3>
-                        <p><strong>14,90 €/mois — Sans engagement</strong><br><span style="font-size: 11px;">Annule quand tu veux. Accès immédiat.</span></p>
-                        <p style="font-size: 13px; color: #5f5e5a; margin: 12px 0;"><strong>Guide actuel + mises à jour régulières</strong> — Nouveaux contenus ajoutés régulièrement — Une bibliothèque vivante.<br>
-                        Déverrouille le guide actuel, les profils familiaux détaillés et les futures mises à jour.</p>
-                        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 16px;">
-                            <a href="https://payhip.com/b/9zOuQ" target="_blank" class="cta-button" style="background: #ba7517; color: white;">Débloquer RED FLAG Famille</a>
-                            <a href="https://www.resonanceintuitive.com/consultations" class="cta-button" target="_blank">Consultation personnalisée</a>
-                        </div>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://payhip.com/b/9zOuQ" target="_blank" class="btn btn-primary" style="background: #ba7517; color: white; text-decoration: none; display: inline-block;">🔓 Débloquer RED FLAG Famille — 14,90 €/mois</a>
-                    </div>`;
-
-            document.getElementById('resultsContainer').innerHTML = html;
-            // Marquer le test comme complété - UN SEUL TEST PAR NAVIGATEUR/APPAREIL
-            localStorage.setItem(testCompletedKey, 'true');
-            switchTab('results');
+            generateResult();
         }
 
-        function generatePDFAnalysisLight() {
-            showPremiumMessage();
+        function generateResult() {
+            // Compter les points en utilisant la pondération de chaque question
+            const scores = {};
+            Object.keys(answers).forEach(category => {
+                const answer = answers[category];
+                const question = selectedQuestions.find(q => q.category === category);
+                const questionValue = question ? question.value : 5;
+                
+                if (answer === 'oui') {
+                    scores[category] = questionValue;
+                } else if (answer === 'parfois') {
+                    scores[category] = Math.round(questionValue / 2);
+                } else {
+                    scores[category] = 0;
+                }
+            });
+
+            // Profil dominant (gestion des égalités par tirage au sort)
+            const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+            const maxScore = sorted[0][1];
+            const topProfiles = sorted.filter(s => s[1] === maxScore);
+            const mainProfile = topProfiles[Math.floor(Math.random() * topProfiles.length)][0];
+
+            let html = `
+                <div class="result-light">
+                    <h2>Le rôle que tu joues probablement dans ta famille</h2>
+                    <div class="profile-name">${profiles[mainProfile].name}</div>
+                    <p style="color: #5f5e5a; font-size: 14px; margin: 12px 0; line-height: 1.6;">
+                        ${profiles[mainProfile].description}
+                    </p>
+                    <div class="confidence">Premier rôle identifié</div>
+                </div>
+
+                <div class="secondary-hook">
+                    <p>
+                        <strong>Mais il est très rare qu'une personne n'ait qu'un seul rôle familial.</strong><br><br>
+                        Le deuxième rôle est souvent celui qui détruit les relations amoureuses.
+                    </p>
+                </div>
+
+                <div class="lock-box">
+                    <h3>🔒 Le test gratuit s'arrête là</h3>
+                    <p>Tu as ton profil dominant. Les 3 autres rôles cachés influencent encore tes relations aujourd'hui.</p>
+                </div>
+
+                <div class="emotional-context">
+                    <p>
+                        Tu viens probablement de reconnaître quelque chose que tu fais depuis des années sans t'en rendre compte. Le plus dangereux n'est pas ce que tu as vécu. C'est ce que tu continues à reproduire sans t'en rendre compte.
+                    </p>
+                </div>
+
+                <div class="cta-box">
+                    <h3>🔓 Accéder à la version complète</h3>
+                    <p><strong>RED FLAG Famille Premium — 14,90 €/mois</strong><br><span style="font-size: 12px;">Sans engagement. Annule quand tu veux.</span></p>
+                    <p style="font-size: 13px; margin-top: 12px;">
+                        • Les 4 rôles secondaires<br>
+                        • Les mécanismes cachés<br>
+                        • Les pistes concrètes pour changer<br>
+                        • Mises à jour régulières
+                    </p>
+                    <a href="https://payhip.com/b/9zOuQ" target="_blank" class="cta-button">Débloquer la version complète</a>
+                </div>
+            `;
+
+            document.getElementById('resultsContainer').innerHTML = html;
+            localStorage.setItem(testCompletedKey, 'true');
+            switchTab('results');
         }
 
         function switchTab(tab) {
@@ -1151,27 +537,27 @@
             const activeButton = document.querySelector(`.tab-button[onclick="switchTab('${tab}')"]`);
             if (activeButton) activeButton.classList.add('active');
         }
-        
-        function clearAssessment() {
-            if (localStorage.getItem(testCompletedKey) === 'true') {
-                alert('Le test gratuit a déjà été complété sur ce navigateur. Tes résultats restent accessibles, mais le test ne peut pas être relancé gratuitement.');
-                switchTab('results');
-                return;
-            }
 
-            if (confirm('Effacer toutes tes réponses ?')) {
+        function resetAssessment() {
+            if (confirm('Effacer les réponses ?')) {
                 answers = {};
                 localStorage.removeItem('redFlagFamilleAnswers');
-                renderQuestions();
+                initializeQuestions();
                 switchTab('assessment');
             }
         }
 
-        function resetAssessment() {
-            clearAssessment();
-        }
-        
-        initializeQuestions();
+        // Initialiser au démarrage
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('redFlagFamilleAnswers');
+            if (saved) {
+                answers = JSON.parse(saved);
+            }
+            if (localStorage.getItem(testCompletedKey) === 'true') {
+                switchTab('results');
+            }
+            initializeQuestions();
+        });
     </script>
 </body>
 </html>
